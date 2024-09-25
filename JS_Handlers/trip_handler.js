@@ -104,7 +104,7 @@ function getTripData(page = 1) {
         request += `&start=` + encodeURIComponent(startDate);
     }
 
-    // Add Start Date to query url if there is input
+    // Add End Date to query url if there is input
     if (endDate) {
         request += '&end=' + encodeURIComponent(endDate);
     }

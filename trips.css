@@ -1,7 +1,11 @@
+.pagination-text {
+    color: grey;
+}
+
 .pagination a {
     margin: 0 10px;  /* Adjust the spacing between the links */
     text-decoration: none;
-    color: pink; /* Change link color */
+    color: blue; /* Change link color */
 }
 
 .pagination a:hover {

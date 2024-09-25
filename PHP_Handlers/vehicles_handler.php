@@ -1,95 +1,91 @@
 <?php
 header('Content-Type: application/json');
 
-require_once 'db.php'; // Include database connection
+// Connect to SQLite database
+include_once __DIR__ . '/../db.php';
 
-$categoriesQuery = "SELECT DISTINCT vehicle_category FROM vehicle";
-$categoriesStmt = $pdo->query($categoriesQuery);
-$vehicleCategories = $categoriesStmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Set data values from GET parameters
-$type = isset($_GET['type']) ? $_GET['type'] : null;
-$rego = isset($_GET['rego']) ? $_GET['rego'] : '';
-$commissioned = isset($_GET['commissioned']) ? $_GET['commissioned'] : '';
-$decommissioned = isset($_GET['decommissioned']) ? $_GET['decommissioned'] : '';
-$omin = isset($_GET['omin']) ? (int)$_GET['omin'] : 0;
-$omax = isset($_GET['omax']) ? (int)$_GET['omax'] : 70000;
-$category = isset($_GET['category']) ? $_GET['category'] : '';
-
-// Set default limit and offset for vehicleData
-$limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 25;
+// Get the query parameters from the URL
 $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
+$limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 25;
 
-// Initialize query
-$query = '';
+$odometerMin = isset($_GET['OdoMin']) && $_GET['OdoMin'] !== '' ? (int)$_GET['OdoMin'] : 0;
+$odometerMax = isset($_GET['OdoMax']) && $_GET['OdoMax'] !== '' ? (int)$_GET['OdoMax'] : 10000000;
+$vehicleType = isset($_GET['vehicleType']) ? $_GET['vehicleType'] : 'ALL';
+$commissioned = isset($_GET['com']) ? $_GET['com'] : null; // Set to null if not provided
+$decommissioned = isset($_GET['decom']) ? $_GET['decom'] : null; // Set to null if not provided
+$rego = isset($_GET['rego']) ? $_GET['rego'] : '';
 
-// Build query based on type
-if ($type === 'vehicleData') {
-    // Query for vehicle data
-    $query = "SELECT vehicle.vehicle_rego, vehicle.vehicle_category, vehicle.odometer, 
-                     commissioned_date.date AS commissioned, decommissioned_date.date AS decommissioned
-              FROM vehicle 
-              LEFT JOIN sim_day_date commissioned_date ON vehicle.commissioned = commissioned_date.sim_day 
-              LEFT JOIN sim_day_date decommissioned_date ON vehicle.decommissioned = decommissioned_date.sim_day 
-              WHERE odometer >= :omin AND odometer <= :omax";
-} else if ($type === 'vehicleCount') {
-    // Query for vehicle count
-    $query = "SELECT COUNT(*) as vehicle_count 
-              FROM vehicle 
-              WHERE odometer >= :omin AND odometer <= :omax";
-} else {
-    // If type is not recognized, return an error message
-    echo json_encode(['error' => 'Invalid type parameter.']);
-    exit;
-}
+// Prepare SQL query
+$query = 'SELECT vehicle.vehicle_rego, vehicle.vehicle_category, vehicle.odometer, 
+           commissioned_date.date AS commissioned_date, 
+           decommissioned_date.date AS decommissioned_date
+    FROM vehicle
+    LEFT JOIN sim_day_date AS commissioned_date 
+        ON vehicle.commissioned = commissioned_date.sim_day
+    LEFT JOIN sim_day_date AS decommissioned_date 
+        ON vehicle.decommissioned = decommissioned_date.sim_day
+    WHERE odometer >= :odometerMin AND odometer <= :odometerMax';
 
-// Add necessary filters
-if ($rego) {
-    $query .= " AND vehicle_rego = :rego";
-}
-if ($commissioned) {
-    $query .= " AND commissioned = :commissioned";
-}
-if ($decommissioned) {
-    $query .= " AND decommissioned = :decommissioned";
-}
-if ($category) {
-    $query .= " AND vehicle_category = :category";
-}
+if ($vehicleType !== 'ALL') $query .= ' AND vehicle_category = :vehicleType';
+if ($commissioned !== null) $query .= ' AND commissioned_date.date >= :commissioned';
+if ($decommissioned !== null) $query .= ' AND decommissioned_date.date <= :decommissioned';
+if ($rego !== '') $query .= ' AND vehicle_rego LIKE :rego';
 
-// If fetching vehicle data, add LIMIT and OFFSET for pagination
-if ($type === 'vehicleData') {
-    $query .= " LIMIT :limit OFFSET :offset";
-}
+// Append LIMIT and OFFSET
+$query .= ' LIMIT :limit OFFSET :offset';
 
-// Prepare the SQL statement
+// Prepare statement
 $stmt = $pdo->prepare($query);
 
-// Bind common parameters
-$stmt->bindParam(':omin', $omin, PDO::PARAM_INT);
-$stmt->bindParam(':omax', $omax, PDO::PARAM_INT);
-if ($rego) $stmt->bindParam(':rego', $rego);
-if ($commissioned) $stmt->bindParam(':commissioned', $commissioned);
-if ($decommissioned) $stmt->bindParam(':decommissioned', $decommissioned);
-if ($category) $stmt->bindParam(':category', $category);
+// Bind parameters
+$stmt->bindParam(':odometerMin', $odometerMin, PDO::PARAM_INT);
+$stmt->bindParam(':odometerMax', $odometerMax, PDO::PARAM_INT);
+$stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+$stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
 
-// Bind LIMIT and OFFSET for vehicleData request
-if ($type === 'vehicleData') {
-    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-}
+if ($vehicleType !== 'ALL') $stmt->bindParam(':vehicleType', $vehicleType, PDO::PARAM_STR);
+if ($commissioned !== null) $stmt->bindParam(':commissioned', $commissioned, PDO::PARAM_STR);
+if ($decommissioned !== null) $stmt->bindParam(':decommissioned', $decommissioned, PDO::PARAM_STR);
+if ($rego !== '') $stmt->bindValue(':rego', $rego . '%', PDO::PARAM_STR);
 
-// Execute the query
+// Execute and fetch data
 $stmt->execute();
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Fetch the result based on the type of request
-if ($type === 'vehicleData') {
-    // Fetch all vehicle data
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} else if ($type === 'vehicleCount') {
-    // Fetch the vehicle count
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-}
-// Return the result as a JSON object
-echo json_encode($result);
-?>
+
+// Count total vehicles for pagination
+$countQuery = 'SELECT COUNT(*) as count 
+    FROM vehicle 
+    LEFT JOIN sim_day_date AS commissioned_date 
+        ON vehicle.commissioned = commissioned_date.sim_day
+    LEFT JOIN sim_day_date AS decommissioned_date 
+        ON vehicle.decommissioned = decommissioned_date.sim_day
+    WHERE odometer >= :odometerMin AND odometer <= :odometerMax';
+
+if ($vehicleType !== 'ALL') $countQuery .= ' AND vehicle_category = :vehicleType';
+if ($commissioned !== null) $countQuery .= ' AND commissioned_date.date >= :commissioned';
+if ($decommissioned !== null) $countQuery .= ' AND decommissioned_date.date <= :decommissioned';
+if ($rego !== '') $countQuery .= ' AND vehicle_rego LIKE :rego';
+
+// Prepare and bind parameters for count query
+$countStmt = $pdo->prepare($countQuery);
+$countStmt->bindParam(':odometerMin', $odometerMin, PDO::PARAM_INT);
+$countStmt->bindParam(':odometerMax', $odometerMax, PDO::PARAM_INT);
+
+if ($vehicleType !== 'ALL') $countStmt->bindParam(':vehicleType', $vehicleType, PDO::PARAM_STR);
+if ($commissioned !== null) $countStmt->bindParam(':commissioned', $commissioned, PDO::PARAM_STR);
+if ($decommissioned !== null) $countStmt->bindParam(':decommissioned', $decommissioned, PDO::PARAM_STR);
+if ($rego !== '') $countStmt->bindValue(':rego', $rego . '%', PDO::PARAM_STR);
+
+// Execute and fetch the total count
+$countStmt->execute();
+$totalVehicles = $countStmt->fetch(PDO::FETCH_ASSOC)['count'];
+$totalPages = ceil($totalVehicles / $limit);
+
+// Return data as JSON
+echo json_encode([
+    'data' => $results,
+    'count' => $totalVehicles,
+    'totalPages' => $totalPages,
+    'currentPage' => floor($offset / $limit) + 1,
+]);

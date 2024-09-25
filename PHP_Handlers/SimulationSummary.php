@@ -1,5 +1,5 @@
 <?php
-require_once 'db.php';
+require_once __DIR__ . '/../db.php';
 
 $trip_completed = $pdo->query("SELECT `Trips Completed` FROM simulation_summary");
 $trip_upgraded = $pdo->query("SELECT `Trips Upgraded` FROM simulation_summary");
