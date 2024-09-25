@@ -79,12 +79,12 @@ function getVehicleData(page = 1) {
         url += `&rego=` + encodeURIComponent(rego);
     }
 
-    // Add Commissioned Date to query url if there is  input
+    // Add Commissioned Date to query url if there is input
     if (commissionedDate) {
         request += `&com=` + encodeURIComponent(commissionedDate);
     }
 
-    // Add Decommissioned Date to query url if there is  input
+    // Add Decommissioned Date to query url if there is input
     if (decommissionedDate) {
         request += '&decom=' + encodeURIComponent(decommissionedDate);
     }
@@ -102,7 +102,6 @@ function getVehicleData(page = 1) {
 
             // Check if this is the latest request before processing data
             if (requestTimestamp === lastRequestTimestamp) {
-                console.log(data);
                 var output = '';
 
                 // Update vehicle count
@@ -115,9 +114,11 @@ function getVehicleData(page = 1) {
                         Vehicle_rego: <a href="vehicle.php?rego=${vehicle.vehicle_rego}">${vehicle.vehicle_rego}</a> <br>
                         Vehicle Category: ${vehicle.vehicle_category}<br>
                         Odometer: ${vehicle.odometer}<br> 
-                        Commissioned Date: ${vehicle.commissioned_date}<br> 
-                        Decommissioned: ${vehicle.decommissioned_date}<br> 
-                    </div>`;
+                        Commissioned Date: ${vehicle.commissioned_date}<br>`;
+                    if (vehicle.decommissioned_date) {
+                        output += `Decommissioned: ${vehicle.decommissioned_date}<br>`;
+                    }
+                    output += `</div>`;
                 });
                 document.getElementById("data").innerHTML = output;
 
