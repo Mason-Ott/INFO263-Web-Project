@@ -17,6 +17,9 @@ window.onload = function() {
     if (params.has('destination')) {
         document.getElementById('selectedDestination').textContent = params.get('destination');
     }
+    if (params.has('rego')) {
+        document.getElementById('rego').value = params.get('rego').toUpperCase();
+    }
     if (params.has('page')) {
         page = params.get('page');
     } else {
@@ -43,6 +46,7 @@ function getTripData(page = 1) {
     var destination = document.getElementById('selectedDestination').textContent === "ANY" ? "" : document.getElementById('selectedDestination').textContent;
     var startDate = document.getElementById('startDate').value;
     var endDate = document.getElementById('endDate').value;
+    var rego = document.getElementById('rego').value.toUpperCase();
 
     // Check for valid Distance inputs
     var validDistanceMin = distanceMin && !isNaN(distanceMin) ? distanceMin : '';
@@ -89,12 +93,18 @@ function getTripData(page = 1) {
         request += `&destination=` + encodeURIComponent(destination);
     }
 
-    // Add Start Date to query url if there is  input
+    // Add Rego to query url and display url if there is an input
+    if (rego !== "") {
+        request += `&rego=` + encodeURIComponent(rego);
+        url += `&rego=` + encodeURIComponent(rego);
+    }
+
+    // Add Start Date to query url if there is input
     if (startDate) {
         request += `&start=` + encodeURIComponent(startDate);
     }
 
-    // Add Start Date to query url if there is  input
+    // Add Start Date to query url if there is input
     if (endDate) {
         request += '&end=' + encodeURIComponent(endDate);
     }
