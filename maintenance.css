@@ -1,0 +1,31 @@
+.pagination-text {
+    color: grey;
+}
+
+.pagination a {
+    margin: 0 10px;  /* Adjust the spacing between the links */
+    text-decoration: none;
+    color: blue; /* Change link color */
+}
+
+.pagination a:hover {
+    text-decoration: underline;
+    color: darkblue; /* Change color on hover */
+}
+
+.maintenancedata-section {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Creates 5 equal-width columns */
+    gap: 20px; /* Adds 20px space between grid items */
+    padding: 20px;
+    width: 66%;
+    margin: 0 auto;
+}
+
+.maintenance {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
