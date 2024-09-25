@@ -11,6 +11,7 @@ function getVehicleData() {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", `PHP_Handlers/vehicle_handler.php?rego=${rego}`, true);
     xhr.onreadystatechange = function () {
+        console.log(xhr.responseText);
         if (xhr.readyState == 4 && xhr.status == 200) {
             const data = JSON.parse(xhr.responseText);
             let vehicleOutput = "";
@@ -18,15 +19,17 @@ function getVehicleData() {
             let maintenanceOutput = "";
 
             // Vehicle data (should be a single object, not array)
-
             if (data.vehicle) {
                 vehicleOutput = `
                     <div class="vehicle"> 
                         Type: ${data.vehicle.vehicle_category}<br> 
                         Odometer: ${data.vehicle.odometer}<br>
                         Commissioned: ${data.vehicle.commissioned_date}<br> 
-                        Decommissioned: ${data.vehicle.decommissioned_date}<br> 
-                    </div>`;
+                        Decommissioned: ${data.vehicle.decommissioned_date}<br>`;
+                if (data.vehicle.distance_since_maintenance != null) {
+                    vehicleOutput += `Distance Since Maintenance: ${data.vehicle.distance_since_maintenance}<br>`;
+                }
+                vehicleOutput += `</div>`;
             }
 
             // Trips data (array)

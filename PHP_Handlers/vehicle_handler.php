@@ -10,12 +10,14 @@ $rego = isset($_GET['rego']) ? $_GET['rego'] : '';
 $vehicleQuery = '
     SELECT vehicle.vehicle_category, vehicle.odometer, 
            commissioned_date.date AS commissioned_date, 
-           decommissioned_date.date AS decommissioned_date
+           decommissioned_date.date AS decommissioned_date,
+           (vehicle.odometer - maintenance.mileage) AS distance_since_maintenance
     FROM vehicle
     LEFT JOIN sim_day_date AS commissioned_date 
         ON vehicle.commissioned = commissioned_date.sim_day
     LEFT JOIN sim_day_date AS decommissioned_date 
         ON vehicle.decommissioned = decommissioned_date.sim_day
+    LEFT JOIN maintenance ON vehicle.vehicle_rego = maintenance.vehicle_rego
     WHERE vehicle.vehicle_rego = :rego';
 
 $vehicleStmt = $pdo->prepare($vehicleQuery);
