@@ -6,7 +6,7 @@
     <title>Vehicles</title>
     <link rel="stylesheet" href="vehicles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="vehicles.js"></script>
+    <script src="vehicle_handler.js"></script>
 </head>
 <body>
     <?php
@@ -25,12 +25,11 @@
         // Filtering
         $rego = isset($_GET['rego']) ? $_GET['rego'] : '';
         $commissioned = isset($_GET['commissioned']) ? $_GET['commissioned'] : '';
-        $decommissioned = isset($_GET['decomissioned']) ? $_GET['decomissioned'] : '';
+        $decommissioned = isset($_GET['decommissioned']) ? $_GET['decommissioned'] : '';
         $omin = isset($_GET['omin']) ? $_GET['omin'] : 0;
         $omax = isset($_GET['omax']) ? $_GET['omax'] : 70000;
         $vehicleCategories = isset($_GET['category']) ? (array) $_GET['category'] : [];
 
-        //$count = getVehicleCount($rego, $commissioned, $decommissioned, $omin, $omax, $vehicleCategories);
     }
 
 
@@ -41,7 +40,7 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="vehicles.php">Vehicles</a></li>
-            <li><a href="trips.php">Trips</a></li>
+            <li><a href="../trips.php">Trips</a></li>
             <li><a href="maintenance.php">Maintenance</a></li>
             <li><a href="relocations.php">Relocations</a></li>
         </ul>
@@ -80,7 +79,7 @@
     </select>
 
 
-    <section class="vehicledata-section" id="data"> </section>
+    <section class="vehicledata-section" id="data"></section>
 
 
 </body>

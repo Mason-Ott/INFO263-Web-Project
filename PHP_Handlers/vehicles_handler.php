@@ -3,6 +3,10 @@ header('Content-Type: application/json');
 
 require_once 'db.php'; // Include database connection
 
+$categoriesQuery = "SELECT DISTINCT vehicle_category FROM vehicle";
+$categoriesStmt = $pdo->query($categoriesQuery);
+$vehicleCategories = $categoriesStmt->fetchAll(PDO::FETCH_ASSOC);
+
 // Set data values from GET parameters
 $type = isset($_GET['type']) ? $_GET['type'] : null;
 $rego = isset($_GET['rego']) ? $_GET['rego'] : '';
@@ -16,16 +20,27 @@ $category = isset($_GET['category']) ? $_GET['category'] : '';
 $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 25;
 $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
 
+// Initialize query
+$query = '';
+
+// Build query based on type
 if ($type === 'vehicleData') {
     // Query for vehicle data
-    $query = "SELECT vehicle.vehicle_rego, vehicle.vehicle_category, vehicle.odometer, commissioned_date.date AS commissioned, decommissioned_date.date AS decommissioned
-                FROM vehicle 
-                LEFT JOIN sim_day_date commissioned_date ON vehicle.commissioned = commissioned_date.sim_day 
-                LEFT JOIN sim_day_date decommissioned_date ON vehicle.decommissioned = decommissioned_date.sim_day 
-                WHERE odometer >= :omin AND odometer <= :omax";
+    $query = "SELECT vehicle.vehicle_rego, vehicle.vehicle_category, vehicle.odometer, 
+                     commissioned_date.date AS commissioned, decommissioned_date.date AS decommissioned
+              FROM vehicle 
+              LEFT JOIN sim_day_date commissioned_date ON vehicle.commissioned = commissioned_date.sim_day 
+              LEFT JOIN sim_day_date decommissioned_date ON vehicle.decommissioned = decommissioned_date.sim_day 
+              WHERE odometer >= :omin AND odometer <= :omax";
 } else if ($type === 'vehicleCount') {
     // Query for vehicle count
-    $query = "SELECT COUNT(*) as vehicle_count FROM vehicle WHERE odometer >= :omin AND odometer <= :omax";
+    $query = "SELECT COUNT(*) as vehicle_count 
+              FROM vehicle 
+              WHERE odometer >= :omin AND odometer <= :omax";
+} else {
+    // If type is not recognized, return an error message
+    echo json_encode(['error' => 'Invalid type parameter.']);
+    exit;
 }
 
 // Add necessary filters
@@ -75,7 +90,6 @@ if ($type === 'vehicleData') {
     // Fetch the vehicle count
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 }
-
 // Return the result as a JSON object
 echo json_encode($result);
 ?>
