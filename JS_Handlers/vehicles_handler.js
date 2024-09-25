@@ -39,6 +39,7 @@ function getVehicleData(page = 1) {
     var commissionedDate = document.getElementById('commissioned').value;
     var decommissionedDate = document.getElementById('decommissioned').value;
     var rego = document.getElementById('rego').value.toUpperCase();
+    var requiresMaintenance = document.getElementById('requiresMaintenance').checked;
 
     // Check for valid Odometer inputs
     var validOdometerMin = odometerMin && !isNaN(odometerMin) ? odometerMin : '';
@@ -89,8 +90,15 @@ function getVehicleData(page = 1) {
         request += '&decom=' + encodeURIComponent(decommissionedDate);
     }
 
+    if (requiresMaintenance) {
+        request += '&requires=' + encodeURIComponent(requiresMaintenance);
+    }
+
     // Update URL
     window.history.pushState({}, '', url);
+
+    console.log(requestUrl + request);  // Output the full request URL to check correctness
+
 
     // Make AJAX request to get vehicle data
     var xhr = new XMLHttpRequest();
@@ -117,6 +125,9 @@ function getVehicleData(page = 1) {
                         Commissioned Date: ${vehicle.commissioned_date}<br>`;
                     if (vehicle.decommissioned_date) {
                         output += `Decommissioned: ${vehicle.decommissioned_date}<br>`;
+                    }
+                    if (vehicle.distance_since_maintenance != null) {
+                        output += `Distance Since Maintenance: ${vehicle.distance_since_maintenance}<br>`;
                     }
                     output += `</div>`;
                 });
