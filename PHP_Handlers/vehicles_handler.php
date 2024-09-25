@@ -14,22 +14,45 @@ $vehicleType = isset($_GET['vehicleType']) ? $_GET['vehicleType'] : 'ALL';
 $commissioned = isset($_GET['com']) ? $_GET['com'] : null; // Set to null if not provided
 $decommissioned = isset($_GET['decom']) ? $_GET['decom'] : null; // Set to null if not provided
 $rego = isset($_GET['rego']) ? $_GET['rego'] : '';
+$requiresMaintenance = isset($_GET['requires']) ? $_GET['requires'] : '';
 
 // Prepare SQL query
 $query = 'SELECT vehicle.vehicle_rego, vehicle.vehicle_category, vehicle.odometer, 
            commissioned_date.date AS commissioned_date, 
-           decommissioned_date.date AS decommissioned_date
+           decommissioned_date.date AS decommissioned_date,
+           (vehicle.odometer - maintenance.mileage) AS distance_since_maintenance
     FROM vehicle
     LEFT JOIN sim_day_date AS commissioned_date 
         ON vehicle.commissioned = commissioned_date.sim_day
     LEFT JOIN sim_day_date AS decommissioned_date 
         ON vehicle.decommissioned = decommissioned_date.sim_day
+    LEFT JOIN maintenance ON vehicle.vehicle_rego = maintenance.vehicle_rego
     WHERE odometer >= :odometerMin AND odometer <= :odometerMax';
 
-if ($vehicleType !== 'ALL') $query .= ' AND vehicle_category = :vehicleType';
-if ($commissioned !== null) $query .= ' AND commissioned_date.date >= :commissioned';
-if ($decommissioned !== null) $query .= ' AND decommissioned_date.date <= :decommissioned';
-if ($rego !== '') $query .= ' AND vehicle_rego LIKE :rego';
+// Add conditional filtering for vehicle type
+if ($vehicleType !== 'ALL') {
+    $query .= ' AND vehicle_category = :vehicleType';
+}
+
+// Add filtering for commissioned date if provided
+if ($commissioned !== null) {
+    $query .= ' AND commissioned_date.date >= :commissioned';
+}
+
+// Add filtering for decommissioned date if provided
+if ($decommissioned !== null) {
+    $query .= ' AND decommissioned_date.date <= :decommissioned';
+}
+
+// Add filtering for registration number
+if ($rego !== '') {
+    $query .= ' AND vehicle_rego LIKE :rego';
+}
+
+// Add maintenance check if the checkbox is selected
+if ($requiresMaintenance == 'true') {
+    $query .= ' AND (vehicle.odometer - maintenance.mileage) >= 20000';
+}
 
 // Append LIMIT and OFFSET
 $query .= ' LIMIT :limit OFFSET :offset';
@@ -55,17 +78,22 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Count total vehicles for pagination
 $countQuery = 'SELECT COUNT(*) as count 
-    FROM vehicle 
+    FROM vehicle
     LEFT JOIN sim_day_date AS commissioned_date 
         ON vehicle.commissioned = commissioned_date.sim_day
     LEFT JOIN sim_day_date AS decommissioned_date 
         ON vehicle.decommissioned = decommissioned_date.sim_day
+    LEFT JOIN maintenance ON vehicle.vehicle_rego = maintenance.vehicle_rego
     WHERE odometer >= :odometerMin AND odometer <= :odometerMax';
 
 if ($vehicleType !== 'ALL') $countQuery .= ' AND vehicle_category = :vehicleType';
 if ($commissioned !== null) $countQuery .= ' AND commissioned_date.date >= :commissioned';
 if ($decommissioned !== null) $countQuery .= ' AND decommissioned_date.date <= :decommissioned';
 if ($rego !== '') $countQuery .= ' AND vehicle_rego LIKE :rego';
+// Add maintenance check if the checkbox is selected
+if ($requiresMaintenance == 'true') {
+    $countQuery .= ' AND (vehicle.odometer - maintenance.mileage) >= 20000';
+}
 
 // Prepare and bind parameters for count query
 $countStmt = $pdo->prepare($countQuery);
