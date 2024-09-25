@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicles</title>
-    <link rel="stylesheet" href="vehicles.css">
+    <link rel="stylesheet" href="CSS_Files/vehicles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="JS_Handlers/vehicles_handler.js"></script>
 
@@ -77,16 +77,25 @@
     </div>
 
     <div class="row text-center">
-        <div class="col-6 ">
+        <div class="col-4 ">
             <!-- Text Input for Minimum Odometer -->
             <label for="odometerMin">Minimum Odometer:</label>
             <input type="text" id="odometerMin" oninput="getVehicleData()" placeholder="Minimum Odometer">
         </div>
 
-        <div class="col-6">
+        <div class="col-4">
             <!-- Text Input for Maximum Odometer -->
             <label for="odometerMax">Maximum Odometer:</label>
             <input type="text" id="odometerMax" oninput="getVehicleData()" placeholder="Maximum Odometer">
+        </div>
+
+        <div class="col-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" id="requiresMaintenance" oninput="getVehicleData()">
+                <label class="form-check-label" for="requiresMaintenance">
+                    Requires Maintenance
+                </label>
+            </div>
         </div>
     </div>
 
