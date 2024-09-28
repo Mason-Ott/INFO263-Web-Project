@@ -20,7 +20,7 @@
 </header>
 
 <?php
-require_once 'PHP_Handlers/SimulationSummary.php';
+require_once 'PHP_Handlers/index_handler.php';
 ?>
 
 

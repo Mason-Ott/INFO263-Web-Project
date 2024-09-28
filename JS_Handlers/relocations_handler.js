@@ -26,13 +26,13 @@ window.onload = function() {
         page = 1;
     }
 
-    // load trip data on page load
-    getTripData(page);
+    // load relocation data on page load
+    getRelocationData(page);
 };
 
 var lastRequestTimestamp = 0;
 
-function getTripData(page = 1) {
+function getRelocationData(page = 1) {
 
     // track time of latest request
     var requestTimestamp = Date.now();
@@ -58,10 +58,10 @@ function getTripData(page = 1) {
 
     // construct request URL
 
-    var requestUrl = `PHP_Handlers/trip_handler.php?&offset=${offset}&limit=${limit}`;
+    var requestUrl = `PHP_Handlers/relocations_handler.php?offset=${offset}&limit=${limit}`;
     var request = ``;
 
-    var url = `trips.php?page=${page}`;
+    var url = `relocations.php?page=${page}`;
 
     // Add Minimum Distance to query url and display url if there is a valid input
     if (validDistanceMin) {
@@ -112,7 +112,7 @@ function getTripData(page = 1) {
     // Update URL
     window.history.pushState({}, '', url);
 
-    // Make AJAX request to get trip data
+    // Make AJAX request to get relocation data
     var xhr = new XMLHttpRequest();
     xhr.open("GET", requestUrl + request, true);
     xhr.onreadystatechange = function () {
@@ -124,21 +124,21 @@ function getTripData(page = 1) {
                 console.log(data);
                 var output = '';
 
-                // Update trip count
-                document.getElementById('trip-count').textContent = data.count;
+                // Update relocation count
+                document.getElementById('relocations-count').textContent = data.count;
 
                 // Display the data in the table
-                data.data.forEach(function (trip) {
+                data.data.forEach(function (relocation) {
                     output += `
-                    <div class="trip"> 
-                        Trip ID: ${trip.trip_id}<br> 
-                        Start_date: ${trip.start_date}<br>
-                        End_date: ${trip.end_date}<br> 
-                        Origin: ${trip.origin}<br> 
-                        Destination: ${trip.destination}<br> 
-                        Distance: ${trip.distance} <br>
-                        Vehicle_category: ${trip.vehicle_category}<br> 
-                        Vehicle_rego: <a href="vehicle.php?rego=${trip.vehicle_rego}">${trip.vehicle_rego}</a> <br>
+                    <div class="relocation"> 
+                        Relocation ID: ${relocation.relocation_id}<br> 
+                        Start_date: ${relocation.start_date}<br>
+                        End_date: ${relocation.end_date}<br> 
+                        Origin: ${relocation.origin}<br> 
+                        Destination: ${relocation.destination}<br> 
+                        Distance: ${relocation.distance} <br>
+                        Vehicle_category: ${relocation.vehicle_category}<br> 
+                        Vehicle_rego: <a href="vehicle.php?rego=${relocation.vehicle_rego}">${relocation.vehicle_rego}</a> <br>
                     </div>`;
                 });
                 document.getElementById("data").innerHTML = output;
@@ -163,7 +163,7 @@ function handlePagination(currentPage, totalPages) {
         prevLink.textContent = 'Page 1';
         prevLink.onclick = (e) => {
             e.preventDefault();
-            getTripData(1);
+            getRelocationData(1);
         };
         paginationDiv.appendChild(prevLink);
         paginationDiv.appendChild(document.createTextNode('    '));
@@ -183,7 +183,7 @@ function handlePagination(currentPage, totalPages) {
         prevLink.textContent = 'Previous Page';
         prevLink.onclick = (e) => {
             e.preventDefault();
-            getTripData(currentPage - 1);
+            getRelocationData(currentPage - 1);
         };
         paginationDiv.appendChild(prevLink);
         paginationDiv.appendChild(document.createTextNode('    '));
@@ -203,7 +203,7 @@ function handlePagination(currentPage, totalPages) {
         nextLink.textContent = 'Next Page';
         nextLink.onclick = (e) => {
             e.preventDefault();
-            getTripData(currentPage + 1);
+            getRelocationData(currentPage + 1);
         };
         paginationDiv.appendChild(nextLink);
         paginationDiv.appendChild(document.createTextNode('    '));
@@ -222,7 +222,7 @@ function handlePagination(currentPage, totalPages) {
         nextLink.textContent = 'Page ' + totalPages;
         nextLink.onclick = (e) => {
             e.preventDefault();
-            getTripData(totalPages, false);
+            getRelocationData(totalPages, false);
         };
         paginationDiv.appendChild(nextLink);
     }
@@ -240,9 +240,9 @@ document.addEventListener("DOMContentLoaded", function() {
             // Get the vehicle category from the clicked item's data-category attribute
             var vehicleCategory = event.target.getAttribute('data-category');
 
-            // Update the displayed text in the dropdown button and update trip date
+            // Update the displayed text in the dropdown button and update relocation date
             selectedVehicleType.innerText = vehicleCategory;
-            getTripData(1);
+            getRelocationData(1);
         }
     });
 });
@@ -259,9 +259,9 @@ document.addEventListener("DOMContentLoaded", function() {
             // Get the origin from the clicked item's data-category attribute
             var origin = event.target.getAttribute('data-category');
 
-            // Update the displayed text in the dropdown button and update trip date
+            // Update the displayed text in the dropdown button and update relocation date
             selectedOrigin.innerText = origin;
-            getTripData(1);
+            getRelocationData(1);
         }
     });
 });
@@ -278,9 +278,9 @@ document.addEventListener("DOMContentLoaded", function() {
             // Get the destination from the clicked item's data-category attribute
             var destination = event.target.getAttribute('data-category');
 
-            // Update the displayed text in the dropdown button and update trip data
+            // Update the displayed text in the dropdown button and update relocation data
             selectedDestination.innerText = destination;
-            getTripData(1);
+            getRelocationData(1);
         }
     });
 });
