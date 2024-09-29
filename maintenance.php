@@ -99,13 +99,13 @@
         <div class="col-4">
             <!-- Text Input for Minimum Odometer -->
             <label for="odometerMin">Minimum Odometer:</label>
-            <input type="text" id="odometerMin" oninput="getMaintenanceData()" placeholder="Minimum Odometer">
+            <input type="number" id="odometerMin" step="1000" min="0" max="70000" value="0" oninput="getMaintenanceData()" placeholder="Minimum Odometer">
         </div>
 
         <div class="col-4">
             <!-- Text Input for Maximum Odometer -->
             <label for="odometerMax">Maximum Odometer:</label>
-            <input type="text" id="odometerMax" oninput="getMaintenanceData()" placeholder="Maximum Odometer">
+            <input type="number" id="odometerMax" step="1000" min="0" max="70000" value="70000" oninput="getMaintenanceData()" placeholder="Maximum Odometer">
         </div>
 
         <div class="col-4">

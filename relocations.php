@@ -16,7 +16,7 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="vehicles.php">Vehicles</a></li>
-            <li><a href="relocations.php">Relocations</a></li>
+            <li><a href="trips.php">Trips</a></li>
             <li><a href="maintenance.php">Maintenance</a></li>
             <li><a href="relocations.php">Relocations</a></li>
         </ul>
@@ -123,13 +123,13 @@
         <div class="col-4 ">
             <!-- Text Input for Minimum Distance -->
             <label for="distanceMin">Minimum Distance:</label>
-            <input type="text" id="distanceMin" oninput="getRelocationData()" placeholder="Minimum Distance">
+            <input type="number" id="distanceMin" step="100" min="0" max="1500" value="0" oninput="getRelocationData()" placeholder="Minimum Distance">
         </div>
 
         <div class="col-4">
             <!-- Text Input for Maximum Distance -->
             <label for="distanceMax">Maximum Distance:</label>
-            <input type="text" id="distanceMax" oninput="getRelocationData()" placeholder="Maximum Distance">
+            <input type="number" id="distanceMax" step="100" min="0" max="1500" value="1500" oninput="getRelocationData()" placeholder="Maximum Distance">
         </div>
 
         <div class="col-4">

@@ -123,13 +123,13 @@
             <div class="col-4 ">
                 <!-- Text Input for Minimum Distance -->
                 <label for="distanceMin">Minimum Distance:</label>
-                <input type="text" id="distanceMin" oninput="getTripData()" placeholder="Minimum Distance">
+                <input type="number" id="distanceMin" step="100" min="0" max="3000" value="0" oninput="getTripData()" placeholder="Minimum Distance">
             </div>
 
             <div class="col-4">
                 <!-- Text Input for Maximum Distance -->
                 <label for="distanceMax">Maximum Distance:</label>
-                <input type="text" id="distanceMax" oninput="getTripData()" placeholder="Maximum Distance">
+                <input type="number" id="distanceMax" step="100" min="0" max="3000" value="3000" oninput="getTripData()" placeholder="Maximum Distance">
             </div>
 
             <div class="col-4">
