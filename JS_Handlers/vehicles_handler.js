@@ -126,8 +126,10 @@ function getVehicleData(page = 1) {
                     if (vehicle.decommissioned_date) {
                         output += `Decommissioned: ${vehicle.decommissioned_date}<br>`;
                     }
-                    if (vehicle.distance_since_maintenance != null) {
-                        output += `Distance Since Maintenance: ${vehicle.distance_since_maintenance}<br>`;
+                    if (vehicle.distance_since_maintenance >= 20000) {
+                        output += `<div class="needingMaintenance">
+                            Requires Maintenance<br>
+                        </div> `;
                     }
                     output += `</div>`;
                 });

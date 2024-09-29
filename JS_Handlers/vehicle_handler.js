@@ -26,8 +26,11 @@ function getVehicleData() {
                         Odometer: ${data.vehicle.odometer}<br>
                         Commissioned: ${data.vehicle.commissioned_date}<br> 
                         Decommissioned: ${data.vehicle.decommissioned_date}<br>`;
-                if (data.vehicle.distance_since_maintenance != null) {
-                    vehicleOutput += `Distance Since Maintenance: ${data.vehicle.distance_since_maintenance}<br>`;
+                if (data.vehicle.distance_since_maintenance >= 20000) {
+                    vehicleOutput += `<div class="needingMaintenance">
+                            Requires Maintenance<br>
+                        </div> 
+                        Distance Since Maintenance: ${data.vehicle.distance_since_maintenance}<br>`;
                 }
                 vehicleOutput += `</div>`;
             }
