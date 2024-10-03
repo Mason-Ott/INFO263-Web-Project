@@ -14,6 +14,13 @@ window.onload = function() {
     if (params.has('rego')) {
         document.getElementById('rego').value = params.get('rego').toUpperCase();
     }
+    if (params.has('sort')) {
+        document.getElementById('selectedSortBy').setAttribute('data-category', params.get('sort'));
+    }
+    if (params.has(`dir`)) {
+        if (params.get('dir') === 'asc') currentDirection = 'asc';
+        else currentDirection = 'desc';
+    }
     if (params.has('page')) {
         page = params.get('page');
     } else {
@@ -25,6 +32,9 @@ window.onload = function() {
 };
 
 var lastRequestTimestamp = 0;
+
+// Set default sort direction
+var currentDirection = "asc";
 
 function getVehicleData(page = 1) {
 
@@ -40,6 +50,7 @@ function getVehicleData(page = 1) {
     var decommissionedDate = document.getElementById('decommissioned').value;
     var rego = document.getElementById('rego').value.toUpperCase();
     var requiresMaintenance = document.getElementById('requiresMaintenance').checked;
+    var sortBy = document.getElementById('selectedSortBy').getAttribute('data-category') || 'Rego';
 
     // Check for valid Odometer inputs
     var validOdometerMin = odometerMin && !isNaN(odometerMin) ? odometerMin : '';
@@ -90,15 +101,18 @@ function getVehicleData(page = 1) {
         request += '&decom=' + encodeURIComponent(decommissionedDate);
     }
 
+    // Add Requires Maintenance to query url if selected
     if (requiresMaintenance) {
         request += '&requires=' + encodeURIComponent(requiresMaintenance);
     }
 
+    // Add Sort by and Sort direction to query and display url
+    request += `&sort=` + encodeURIComponent(sortBy) + `&dir=` + encodeURIComponent(currentDirection);
+    url += `&sort=` + encodeURIComponent(sortBy) + `&dir=` + encodeURIComponent(currentDirection);
+
+
     // Update URL
     window.history.pushState({}, '', url);
-
-    console.log(requestUrl + request);  // Output the full request URL to check correctness
-
 
     // Make AJAX request to get vehicle data
     var xhr = new XMLHttpRequest();
@@ -106,7 +120,6 @@ function getVehicleData(page = 1) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var data = JSON.parse(xhr.responseText);
-            console.log(data);
 
             // Check if this is the latest request before processing data
             if (requestTimestamp === lastRequestTimestamp) {
@@ -131,6 +144,9 @@ function getVehicleData(page = 1) {
                             Requires Maintenance<br>
                         </div> `;
                     }
+                    if (vehicle.distance_since_maintenance != null) {
+                        output += `Distance Since Maintenance: ${vehicle.distance_since_maintenance}<br>`;
+                    }
                     output += `</div>`;
                 });
                 document.getElementById("data").innerHTML = output;
@@ -145,6 +161,8 @@ function getVehicleData(page = 1) {
 
 // Pagination handler
 function handlePagination(currentPage, totalPages) {
+    var currentPage = parseInt(currentPage);
+    var totalPages = parseInt(totalPages);
     var paginationDiv = document.querySelector('.pagination');
     paginationDiv.innerHTML = ''; // Clear existing pagination links
 
@@ -229,12 +247,46 @@ document.addEventListener("DOMContentLoaded", function() {
     vehicleMenu.addEventListener('click', function(event) {
         // Check if a dropdown item was clicked
         if (event.target.classList.contains('vehicle-item')) {
-            // Get the vehicle category from the clicked item's data-category attribute
-            var vehicleCategory = event.target.getAttribute('data-category');
-
             // Update the displayed text in the dropdown button and update vehicle data
-            selectedVehicleType.innerText = vehicleCategory;
+            selectedVehicleType.innerText = event.target.getAttribute('data-category');
             getVehicleData(1);
         }
+    });
+});
+
+
+// Handles Sort by Dropdown Button
+document.addEventListener("DOMContentLoaded", function() {
+    var sortMenu = document.getElementById('sortMenu');
+    var selectedSortBy = document.getElementById('selectedSortBy');
+
+    // Add event listener to all dropdown items
+    sortMenu.addEventListener('click', function(event) {
+        // Check if a dropdown item was clicked
+        if (event.target.classList.contains('sort-item')) {
+            // Update the displayed text in the dropdown button and update vehicle data
+            selectedSortBy.innerText = event.target.innerText;
+            selectedSortBy.setAttribute('data-category', event.target.getAttribute('data-category'));
+            getVehicleData(1);
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    var sortDirection = document.getElementById('sort-direction');
+    var sortImage = document.getElementById('sort-image');
+
+    sortDirection.addEventListener('click', function(event) {
+        // Toggle the sort direction
+        if (currentDirection === "asc") {
+            currentDirection = "desc";
+            sortImage.src = "Resources/descending-sort.png";
+        } else {
+            currentDirection = "asc";
+            sortImage.src = "Resources/ascending-sort.png";
+        }
+
+        // Fetch vehicle data with the new sort direction
+        getVehicleData(1);
     });
 });

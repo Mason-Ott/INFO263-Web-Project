@@ -90,11 +90,38 @@
         </div>
 
         <div class="col-4">
+            <!-- Checkbox for requires maintenance -->
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="1" id="requiresMaintenance" oninput="getVehicleData()">
                 <label class="form-check-label" for="requiresMaintenance">
                     Requires Maintenance
                 </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <!-- Dropdown for sort by options-->
+            Sort by
+            <div class="d-inline-flex align-items-center">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span id="selectedSortBy" data-category="vehicle_rego">Rego</span> <!-- Set default -->
+                    </button>
+                    <ul class="dropdown-menu" id="sortMenu">
+                        <li><button class="dropdown-item sort-item" type="button" data-category="vehicle_rego">Rego</button></li>
+                        <li><button class="dropdown-item sort-item" type="button" data-category="odometer">Odometer</button></li>
+                        <li><button class="dropdown-item sort-item" type="button" data-category="commissioned_date">Commission Date</button></li>
+                        <li><button class="dropdown-item sort-item" type="button" data-category="decommissioned_date">Decommission Date</button></li>
+                        <li><button class="dropdown-item sort-item" type="button" data-category="distance_since_maintenance">Distance since Maintenance</button></li>
+                    </ul>
+                </div>
+
+                <!-- Sort Direction Icon Button -->
+                <button id="sort-direction" class="btn btn-light ms-2">
+                    <img id="sort-image" src="Resources/ascending-sort.png" alt="Sort Direction" style="width: 20px; height: 20px;">
+                </button>
             </div>
         </div>
     </div>

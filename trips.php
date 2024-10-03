@@ -142,6 +142,32 @@
 
         <div class="row">
             <div class="col">
+                <!-- Dropdown for sort by options-->
+                Sort by
+                <div class="d-inline-flex align-items-center">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span id="selectedSortBy" data-category="vehicle_rego">Rego</span> <!-- Set default -->
+                        </button>
+                        <ul class="dropdown-menu" id="sortMenu">
+                            <li><button class="dropdown-item sort-item" type="button" data-category="vehicle_rego">Rego</button></li>
+                            <li><button class="dropdown-item sort-item" type="button" data-category="distance">Distance</button></li>
+                            <li><button class="dropdown-item sort-item" type="button" data-category="start_date">Start Date</button></li>
+                            <li><button class="dropdown-item sort-item" type="button" data-category="end_date">End Date</button></li>
+                            <li><button class="dropdown-item sort-item" type="button" data-category="duration">Duration</button></li>
+                        </ul>
+                    </div>
+
+                    <!-- Sort Direction Icon Button -->
+                    <button id="sort-direction" class="btn btn-light ms-2">
+                        <img id="sort-image" src="Resources/ascending-sort.png" alt="Sort Direction" style="width: 20px; height: 20px;">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
                 <!-- Div for displaying pagination -->
                 <div class="pagination"></div>
             </div>

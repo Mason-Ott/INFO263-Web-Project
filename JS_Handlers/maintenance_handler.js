@@ -17,6 +17,13 @@ window.onload = function() {
     if (params.has('rego')) {
         document.getElementById('rego').value = params.get('rego').toUpperCase();
     }
+    if (params.has('sort')) {
+        document.getElementById('selectedSortBy').setAttribute('data-category', params.get('sort'));
+    }
+    if (params.has(`dir`)) {
+        if (params.get('dir') === 'asc') currentDirection = 'asc';
+        else currentDirection = 'desc';
+    }
     if (params.has('page')) {
         page = params.get('page');
     } else {
@@ -28,6 +35,9 @@ window.onload = function() {
 };
 
 var lastRequestTimestamp = 0;
+
+// Set default sort direction
+var currentDirection = "asc";
 
 function getMaintenanceData(page = 1) {
 
@@ -43,6 +53,8 @@ function getMaintenanceData(page = 1) {
     var startDate = document.getElementById('startDate').value;
     var endDate = document.getElementById('endDate').value;
     var rego = document.getElementById('rego').value.toUpperCase();
+    var sortBy = document.getElementById('selectedSortBy').getAttribute('data-category') || 'Rego';
+
 
     // Check for valid Odometer inputs
     var validOdometerMin = odometerMin && !isNaN(odometerMin) ? odometerMin : '';
@@ -98,6 +110,10 @@ function getMaintenanceData(page = 1) {
         request += '&end=' + encodeURIComponent(endDate);
     }
 
+    // Add Sort by and Sort direction to query and display url
+    request += `&sort=` + encodeURIComponent(sortBy) + `&dir=` + encodeURIComponent(currentDirection);
+    url += `&sort=` + encodeURIComponent(sortBy) + `&dir=` + encodeURIComponent(currentDirection);
+
     // Update URL
     window.history.pushState({}, '', url);
 
@@ -141,6 +157,8 @@ function getMaintenanceData(page = 1) {
 
 // Pagination handler
 function handlePagination(currentPage, totalPages) {
+    var currentPage = parseInt(currentPage);
+    var totalPages = parseInt(totalPages);
     var paginationDiv = document.querySelector('.pagination');
     paginationDiv.innerHTML = ''; // Clear existing pagination links
 
@@ -251,5 +269,42 @@ document.addEventListener("DOMContentLoaded", function() {
             selectedLocation.innerText = location;
             getMaintenanceData(1);
         }
+    });
+});
+
+
+// Handles Sort by Dropdown Button
+document.addEventListener("DOMContentLoaded", function() {
+    var sortMenu = document.getElementById('sortMenu');
+    var selectedSortBy = document.getElementById('selectedSortBy');
+
+    // Add event listener to all dropdown items
+    sortMenu.addEventListener('click', function(event) {
+        // Check if a dropdown item was clicked
+        if (event.target.classList.contains('sort-item')) {
+            // Update the displayed text in the dropdown button and update vehicle data
+            selectedSortBy.innerText = event.target.innerText;
+            selectedSortBy.setAttribute('data-category', event.target.getAttribute('data-category'));
+            getMaintenanceData(1);
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    var sortDirection = document.getElementById('sort-direction');
+    var sortImage = document.getElementById('sort-image');
+
+    sortDirection.addEventListener('click', function(event) {
+        // Toggle the sort direction
+        if (currentDirection === "asc") {
+            currentDirection = "desc";
+            sortImage.src = "Resources/descending-sort.png";
+        } else {
+            currentDirection = "asc";
+            sortImage.src = "Resources/ascending-sort.png";
+        }
+
+        // Fetch vehicle data with the new sort direction
+        getMaintenanceData(1);
     });
 });

@@ -39,6 +39,14 @@ if ($location !== 'ANY') $query .= ' AND location = :location';
 if ($startDate) $query .= ' AND start_date.date >= :startDate';
 if ($endDate) $query .= ' AND end_date.date <= :endDate';
 if ($rego) $query .= ' AND maintenance.vehicle_rego LIKE :rego';
+$sortBy = $_GET['sort'] ?? 'vehicle_rego';
+$sortDirection = $_GET['dir'] ?? 'asc';
+
+if ($sortBy === 'vehicle_rego') {
+    $query .= ' ORDER BY vehicle.' . $sortBy . ' ' . $sortDirection;
+} else {
+    $query .= ' ORDER BY ' . $sortBy . ' ' . $sortDirection;
+}
 
 // Append Limit and Offset
 $query .= ' LIMIT :limit OFFSET :offset';

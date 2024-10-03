@@ -18,6 +18,8 @@ $destination = isset($_GET['destination']) ? $_GET['destination'] : 'ANY';
 $startDate = isset($_GET['start']) ? $_GET['start'] : '';
 $endDate = isset($_GET['end']) ? $_GET['end'] : '';
 $rego = isset($_GET['rego']) ? $_GET['rego'] : '';
+$sortBy = $_GET['sort'] ?? 'vehicle_rego';
+$sortDirection = $_GET['dir'] ?? 'asc';
 
 $query = 'SELECT * 
     FROM relocation_whole
@@ -33,6 +35,8 @@ if ($startDate !== '') $query .= ' AND start_date >= :startDate';
 if ($endDate !== '') $query .= ' AND end_date <= :endDate';
 if ($rego !== '') $query .= ' AND vehicle_rego LIKE :rego';
 
+// Add sort by and sort direction
+$query .= ' ORDER BY ' . $sortBy . ' ' . $sortDirection;
 
 // Append Limit and Offset parameters to the query
 $query .= ' LIMIT :limit OFFSET :offset';
