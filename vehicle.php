@@ -10,39 +10,39 @@
 
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="vehicles.php">Vehicles</a></li>
+                <li><a href="trips.php">Trips</a></li>
+                <li><a href="maintenance.php">Maintenance</a></li>
+                <li><a href="relocations.php">Relocations</a></li>
+                <li><a href="vehicle_lifetime.php">Vehicle Lifetime</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<header>
-    <nav>
-        <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="vehicles.php">Vehicles</a></li>
-            <li><a href="trips.php">Trips</a></li>
-            <li><a href="maintenance.php">Maintenance</a></li>
-            <li><a href="relocations.php">Relocations</a></li>
-        </ul>
-    </nav>
-</header>
+    <div class="container">
+        <div class="row-4 text-center">
+            <h1><section id="regoTitle"></section></h1>
+        </div>
 
-<div class="container">
-    <div class="row-4 text-center">
-        <h1><section id="regoTitle"></section></h1>
+        <div class="row-4 text-center">
+            <h2>Vehicle Data:</h2>
+            <section id="vehicleData"></section>
+        </div>
+
+        <div class="row-4 text-center">
+            <h2>Trips:</h2>
+            <section class="data-section" id="tripData"></section>
+        </div>
+
+        <div class="row-4 text-center">
+            <h2>Maintenance:</h2>
+            <section class="data-section" id="maintenanceData"></section>
+        </div>
     </div>
-
-    <div class="row-4 text-center">
-        <h2>Vehicle Data:</h2>
-        <section id="vehicleData"></section>
-    </div>
-
-    <div class="row-4 text-center">
-        <h2>Trips:</h2>
-        <section class="data-section" id="tripData"></section>
-    </div>
-
-    <div class="row-4 text-center">
-        <h2>Maintenance:</h2>
-        <section class="data-section" id="maintenanceData"></section>
-    </div>
-</div>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

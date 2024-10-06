@@ -1,0 +1,22 @@
+canvas {
+    max-width: 600px;
+    max-height: 400px;
+    width: 100%;
+    height: auto;
+}
+
+.vehicledata-section {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Creates 5 equal-width columns */
+    gap: 20px; /* Adds 20px space between grid items */
+    padding: 20px;
+    width: 66%;
+    margin: 0 auto;
+}
+
+.vehicle {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
