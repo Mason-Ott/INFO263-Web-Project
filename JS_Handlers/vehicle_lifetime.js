@@ -1,4 +1,4 @@
-
+// Function to get the data for the histogram
 function getHistogramData() {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "PHP_Handlers/vehicle_lifetime_handler.php", true);
@@ -11,6 +11,7 @@ function getHistogramData() {
     xhr.send();
 }
 
+// Function to get the data for the vehicle table
 function getVehicleData(page, value) {
     var limit = 25;
     var offset = (page - 1) * limit;
@@ -27,6 +28,7 @@ function getVehicleData(page, value) {
             var data = JSON.parse(xhr.responseText);
             var output = "";
             data.data.forEach(function (vehicle) {
+                // Output vehicle data
                 output += `
                     <div class="vehicle"> 
                         Vehicle_rego: <a href="vehicle.php?rego=${vehicle.vehicle_rego}">${vehicle.vehicle_rego}</a> <br>
@@ -75,8 +77,7 @@ function renderHistogram(data) {
     histogramDiv.on('plotly_click', function(data) {
         var binValue = data.points[0].x;
         localStorage.setItem('binValue', binValue);
-
-        console.log("Bin clicked: value=" + binValue);
+        // Get vehicle data for selected bin
         getVehicleData(page, binValue);
     });
 }
