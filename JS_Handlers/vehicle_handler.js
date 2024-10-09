@@ -1,8 +1,10 @@
 window.onload = function() {
     const params = new URLSearchParams(window.location.search);
     if (params.has('rego')) {
-        document.getElementById('regoTitle').textContent = params.get('rego');
-        rego = params.get('rego');  // Get rego from URL params
+        // Update page title and rego Header
+        rego = params.get('rego');
+        document.getElementById('regoHeader').textContent = rego;
+        document.getElementById('title').textContent = rego;
     }
     page1 = 1;
     page2 = 1;

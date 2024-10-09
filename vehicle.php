@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="regoTitle">Vehicle</title>
+    <title id="title">Vehicle</title>
     <link rel="stylesheet" href="CSS_Files/vehicle.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="JS_Handlers/vehicle_handler.js"></script>
@@ -29,7 +29,7 @@
     <div class="container">
         <!-- Vehicle Rego Title-->
         <div class="row-4 text-center">
-            <h1><section id="regoTitle"></section></h1>
+            <h1><section id="regoHeader"></section></h1>
         </div>
 
         <!-- Vehicle Data output -->
