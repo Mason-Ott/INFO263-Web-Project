@@ -112,6 +112,13 @@ function handlePagination(currentPage, totalPages) {
 
     // Handle Previous Page Link
     if (currentPage > 1 & (currentPage - 1) != totalPages) {
+        // Add Ellipsis between First page and Previous page
+        var leftEllipsis = document.createElement('span');
+        leftEllipsis.textContent = '...';
+        leftEllipsis.classList.add('pagination-text');
+        paginationDiv.appendChild(leftEllipsis);
+        paginationDiv.appendChild(document.createTextNode('    '));
+
         var prevLink = document.createElement('a');
         prevLink.href = '#';
         prevLink.textContent = 'Previous Page';
@@ -145,6 +152,13 @@ function handlePagination(currentPage, totalPages) {
 
     // Handle Last Page Link
     if (currentPage < totalPages) {
+        // Add Ellipsis between Last page and Next page
+        var RightEllipsis = document.createElement('span');
+        RightEllipsis.textContent = '...';
+        RightEllipsis.classList.add('pagination-text');
+        paginationDiv.appendChild(RightEllipsis);
+        paginationDiv.appendChild(document.createTextNode('    '));
+
         var lastPageLink = document.createElement('a');
         lastPageLink.href = '#';
         lastPageLink.textContent = 'Page ' + totalPages;

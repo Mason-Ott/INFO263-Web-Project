@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trips</title>
+    <title id="regoTitle">Vehicle</title>
     <link rel="stylesheet" href="CSS_Files/vehicle.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="JS_Handlers/vehicle_handler.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 </head>
 <body>
+    <!-- Navigation Bar -->
     <header>
         <nav>
             <ul>
@@ -19,29 +21,48 @@
                 <li><a href="maintenance.php">Maintenance</a></li>
                 <li><a href="relocations.php">Relocations</a></li>
                 <li><a href="vehicle_lifetime.php">Vehicle Lifetime</a></li>
+                <li><a href="indicator.php">Quarterly Indicators</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="container">
+        <!-- Vehicle Rego Title-->
         <div class="row-4 text-center">
             <h1><section id="regoTitle"></section></h1>
         </div>
 
-        <div class="row-4 text-center">
+        <!-- Vehicle Data output -->
+        <div class="row-3 text-center">
             <h2>Vehicle Data:</h2>
             <section id="vehicleData"></section>
         </div>
 
-        <div class="row-4 text-center">
-            <h2>Trips:</h2>
+        <!-- Trips Data output -->
+        <div class="row-3 text-center">
+            <h2 id="tripHeader">Trips:</h2>
+            <div id="pagination1"></div>
             <section class="data-section" id="tripData"></section>
         </div>
 
-        <div class="row-4 text-center">
-            <h2>Maintenance:</h2>
+        <!-- Relocations Data output -->
+        <div class="row-3 text-center">
+            <h2 id="relocationHeader">Relocations:</h2>
+            <div id="pagination2"></div>
+            <section class="data-section" id="relocationData"></section>
+        </div>
+
+        <!-- Maintenance Data output -->
+        <div class="row-3 text-center">
+            <h2 id="maintenanceHeader">Maintenance:</h2>
+            <div id="pagination3"></div>
             <section class="data-section" id="maintenanceData"></section>
         </div>
+    </div>
+
+    <!-- Odometer Chart -->
+    <div class="chart-container">
+        <canvas id="odometerChart"></canvas>
     </div>
 
 </body>

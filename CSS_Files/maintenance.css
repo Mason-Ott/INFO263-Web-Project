@@ -15,8 +15,8 @@
 
 .maintenancedata-section {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Creates 5 equal-width columns */
-    gap: 20px; /* Adds 20px space between grid items */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
     padding: 20px;
     width: 66%;
     margin: 0 auto;
@@ -29,3 +29,10 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    line-height: 1.5;
+    padding: 10px 0;
+}
