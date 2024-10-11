@@ -178,6 +178,7 @@ function handlePagination(currentPage, totalPages) {
 
     // Handle 'Previous page' Link
     if (currentPage > 2) {
+        // Add Ellipsis between First page and Previous page
         var leftEllipsis = document.createElement('span');
         leftEllipsis.textContent = '...';
         leftEllipsis.classList.add('pagination-text');
@@ -217,6 +218,7 @@ function handlePagination(currentPage, totalPages) {
 
     // Handle Last Page Link
     if (currentPage < totalPages) {
+        // Add Ellipsis between Last page and Next page
         var RightEllipsis = document.createElement('span');
         RightEllipsis.textContent = '...';
         RightEllipsis.classList.add('pagination-text');

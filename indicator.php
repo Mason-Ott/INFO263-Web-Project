@@ -10,26 +10,31 @@
     <script src="JS_Handlers/charts.js"></script>
 
 
+    <button id="goBackButton" style="display: none;" onclick="goBack()">Go Back to Home</button>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <!-- Quarterly Indicators Chart -->
-<button id="quarterlyButton">Show Quarterly Indicators Graph</button>
 <canvas id="myChart" width="400" height="200"></canvas>
 
 <script>
-    // Handle Quarterly Indicators button click
-    $('#quarterlyButton').click(function() {
-        $.ajax({
-            url: 'PHP_Handlers/data_handler.php',
-            type: 'GET',
-            data: { type: 'quarterly_indicators' },
-            success: function(response) {
-                var data = JSON.parse(response);
-                showQuarterlyIndicatorsChart(data);
-            }
-        });
+    // $('#quarterlyButton').click(function() {
+    $.ajax({
+        url: 'PHP_Handlers/quarterly_handler.php',
+        type: 'GET',
+        data: { type: 'quarterly_indicators' },
+        success: function(response) {
+            var data = JSON.parse(response);
+            showQuarterlyIndicatorsChart(data);
+            document.getElementById('goBackButton').style.display = 'block';
+
+        }
     });
+    function goBack() {
+        window.location.href = 'index.php';
+    }
+    // });
 </script>
 </body>
 </html>

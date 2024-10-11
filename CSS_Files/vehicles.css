@@ -18,3 +18,26 @@
     color: red;
     font-weight: bold;
 }
+
+.pagination-text {
+    color: grey;
+}
+
+.pagination a {
+    margin: 0 10px;  /* Adjust the spacing between the links */
+    text-decoration: none;
+    color: blue; /* Change link color */
+}
+
+.pagination a:hover {
+    text-decoration: underline;
+    color: darkblue; /* Change color on hover */
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    line-height: 1.5;
+    padding: 10px 0;
+}
