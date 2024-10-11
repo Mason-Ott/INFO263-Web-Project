@@ -1,3 +1,7 @@
+<?php
+require_once 'PHP_Handlers/admin_login_handler.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,11 +28,16 @@
 
 <div class="login-container">
     <h2>Admin Login</h2>
+
+    <?php if (isset($login_error)) { ?>
+        <div id="login-error">Invalid Credentials!</div>
+    <?php } ?>
+
     <form method="post">
         <div class="form-group">
             <label>Username</label>
             <input type="text" name="username">
-        </div>    
+        </div>
         <div class="form-group">
             <label>Password</label>
             <input type="password" name="password">
