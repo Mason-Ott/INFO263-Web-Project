@@ -12,7 +12,7 @@ require_once 'PHP_Handlers/user_management_handler.php';
     <link rel="stylesheet" href="CSS_Files/user_management.css">
 </head>
 <body>
-    <h2>User Management System</h2>
+    <h2>Database Admin User Management System</h2>
     <h3> Costs and Rates Table Data</h3>
 
     <?php
