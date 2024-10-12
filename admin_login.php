@@ -32,6 +32,7 @@ require_once 'PHP_Handlers/admin_login_handler.php';
 
     <?php if (isset($login_error)) { ?>
         <div id="login-error">Invalid Credentials!</div>
+        <div id="Hint">Hint: Try admin for both</div>
     <?php } ?>
 
     <form method="post">
