@@ -37,11 +37,11 @@ require_once 'PHP_Handlers/user_management_handler.php';
                 <?php foreach ($costs_and_rates as $record) { ?>
                     <tr>
                         <td><?php echo htmlspecialchars($record['vehicle_category']); ?></td>
-                        <td><?php echo htmlspecialchars($record['daily_hire_rate']); ?></td>
-                        <td><?php echo htmlspecialchars($record['flat_maintenance_rate']); ?></td>
-                        <td><?php echo htmlspecialchars($record['hourly_relocation_rate']); ?></td>
-                        <td><?php echo htmlspecialchars($record['purchase_cost']); ?></td>
-                        <td><?php echo htmlspecialchars($record['monthly_lease_cost']); ?></td>
+                        <td><?php echo 'NZD $' . htmlspecialchars($record['daily_hire_rate']); ?></td>
+                        <td><?php echo 'NZD $' . htmlspecialchars($record['flat_maintenance_rate']); ?></td>
+                        <td><?php echo 'NZD $' . htmlspecialchars($record['hourly_relocation_rate']); ?></td>
+                        <td><?php echo 'NZD $' . htmlspecialchars($record['purchase_cost']); ?></td>
+                        <td><?php echo 'NZD $' . htmlspecialchars($record['monthly_lease_cost']); ?></td>
                     </tr>
                 <?php } ?>
             </tbody>
