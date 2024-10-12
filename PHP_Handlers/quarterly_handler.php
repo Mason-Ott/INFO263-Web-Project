@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../db.php';
 
-if (isset($_GET['type']) && $_GET['type'] === 'quarterly_indicators') {
+//if (isset($_GET['type']) && $_GET['type'] === 'quarterly_indicators') {
     // Fetch quarterly indicators data
     $query = 'SELECT * FROM quarterly_indicators';
     $stmt = $pdo->prepare($query);
@@ -37,7 +37,7 @@ if (isset($_GET['type']) && $_GET['type'] === 'quarterly_indicators') {
         'upgrade_losses' => $upgrade_losses,
         'profit' => $profit
     ]);
-}
+//}
 
 
 ?>
