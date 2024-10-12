@@ -20,8 +20,8 @@ require_once 'PHP_Handlers/admin_login_handler.php';
             <li><a href="maintenance.php">Maintenance</a></li>
             <li><a href="relocations.php">Relocations</a></li>
             <li><a href="vehicle_lifetime.php">Vehicle Lifetime</a></li>
-            <li><a href="indicator.php">Quarterly Indicators</a></li>
-            <li><a href="trips_graph.php">Monthly Trips Per Location </a></li>
+            <li><a href="charts.php">Quarterly Indicators</a></li>
+            <li><a href="PHP_Handlers/trips_graph.php">Monthly Trips Per Location </a></li>
             <li><a href="admin_login.php">Database Admin Login</a></li>
         </ul>
     </nav>
