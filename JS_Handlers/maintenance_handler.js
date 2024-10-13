@@ -118,41 +118,38 @@ function getMaintenanceData(page = 1) {
     window.history.pushState({}, '', url);
 
     // Make AJAX request to get maintenance data
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", requestUrl + request, true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var data = JSON.parse(xhr.responseText);
-
+    $.ajax({
+        url: requestUrl + request,
+        method: "GET",
+        success: function(data) {
             // Check if this is the latest request before processing data
             if (requestTimestamp === lastRequestTimestamp) {
                 console.log(data);
                 var output = '';
 
                 // Update maintenance count
-                document.getElementById('maintenance-count').textContent = data.count;
+                $('#maintenance-count').text(data.count);
 
                 // Display the data in the table
-                data.data.forEach(function (maintenance) {
+                $.each(data.data, function(index, maintenance) {
                     output += `
-                    <div class="maintenance"> 
-                        Maintenance ID: ${maintenance.maintenance_id}<br> 
-                        Start_date: ${maintenance.start_date}<br>
-                        End_date: ${maintenance.end_date}<br> 
-                        Location: ${maintenance.location}<br> 
-                        Odometer: ${maintenance.mileage} <br>
-                        Vehicle_category: ${maintenance.vehicle_category}<br> 
-                        Vehicle_rego: <a href="vehicle.php?rego=${maintenance.vehicle_rego}">${maintenance.vehicle_rego}</a> <br>
-                    </div>`;
+                <div class="maintenance"> 
+                    Maintenance ID: ${maintenance.maintenance_id}<br> 
+                    Start_date: ${maintenance.start_date}<br>
+                    End_date: ${maintenance.end_date}<br> 
+                    Location: ${maintenance.location}<br> 
+                    Odometer: ${maintenance.mileage} <br>
+                    Vehicle_category: ${maintenance.vehicle_category}<br> 
+                    Vehicle_rego: <a href="vehicle.php?rego=${maintenance.vehicle_rego}">${maintenance.vehicle_rego}</a> <br>
+                </div>`;
                 });
-                document.getElementById("data").innerHTML = output;
+                $('#data').html(output);
 
                 // Handle pagination
                 handlePagination(page, data.totalPages);
             }
         }
-    };
-    xhr.send();
+    });
 }
 
 // Pagination handler

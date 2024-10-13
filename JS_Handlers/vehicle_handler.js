@@ -22,11 +22,10 @@ function getVehicleData(page1=1, page2=1, page3=1) {
     var offset3 = (page3 - 1) * limit;
 
     // Create request to retrieve Vehicle data
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", `PHP_Handlers/vehicle_handler.php?rego=${rego}&offset1=${offset1}&offset2=${offset2}&offset3=${offset3}`, true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            const data = JSON.parse(xhr.responseText);
+    $.ajax({
+        url: `PHP_Handlers/vehicle_handler.php?rego=${rego}&offset1=${offset1}&offset2=${offset2}&offset3=${offset3}`,
+        method: "GET",
+        success: function(data) {
             var vehicleOutput = "";
             var tripOutput = "";
             var relocationOutput = "";
@@ -115,8 +114,7 @@ function getVehicleData(page1=1, page2=1, page3=1) {
             document.getElementById("relocationData").innerHTML = relocationOutput;
             document.getElementById("maintenanceData").innerHTML = maintenanceOutput;
         }
-    }
-    xhr.send();
+    });
 }
 
 // Pagination handler

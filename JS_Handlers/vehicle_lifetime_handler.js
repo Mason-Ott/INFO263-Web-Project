@@ -20,12 +20,10 @@ function getVehicleData(page, value) {
         value = localStorage.getItem('binValue');
     }
 
-    var xhr = new XMLHttpRequest();
-    var url = "PHP_Handlers/vehicle_lifetime_handler.php?value=" + encodeURIComponent(value) + "&offset=" + encodeURIComponent(offset) + "&limit=" + encodeURIComponent(limit);
-    xhr.open("GET", url, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var data = JSON.parse(xhr.responseText);
+    $.ajax({
+        url: "PHP_Handlers/vehicle_lifetime_handler.php?value=" + encodeURIComponent(value) + "&offset=" + encodeURIComponent(offset) + "&limit=" + encodeURIComponent(limit),
+        method: "GET",
+        success: function(data) {
             var output = "";
             data.data.forEach(function (vehicle) {
                 // Output vehicle data
@@ -40,8 +38,7 @@ function getVehicleData(page, value) {
             document.getElementById("data").innerHTML = output;
             handlePagination(page, data.totalPages);
         }
-    };
-    xhr.send();
+    });
 }
 
 function renderHistogram(data) {

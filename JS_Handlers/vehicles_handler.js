@@ -115,11 +115,10 @@ function getVehicleData(page = 1) {
     window.history.pushState({}, '', url);
 
     // Make AJAX request to get vehicle data
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", requestUrl + request, true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var data = JSON.parse(xhr.responseText);
+    $.ajax({
+        url: requestUrl + request,
+        method: "GET",
+        success: function (data) {
 
             // Check if this is the latest request before processing data
             if (requestTimestamp === lastRequestTimestamp) {
@@ -155,8 +154,7 @@ function getVehicleData(page = 1) {
                 handlePagination(page, data.totalPages);
             }
         }
-    };
-    xhr.send();
+    });
 }
 
 // Pagination handler
