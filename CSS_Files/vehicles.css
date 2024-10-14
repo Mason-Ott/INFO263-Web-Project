@@ -26,15 +26,6 @@
     color: darkblue; /* Change color on hover */
 }
 
-body {
-    background-image: url("https://www.ptolemus.com/wp-content/uploads/2019/06/AdobeStock_86477498.jpeg");
-    background-position: center ;
-    background-size: cover;
-    margin: auto;
-    font-family: Arial, Helvetica, sans-serif;
-
-}
-
 body::before {
     content: '';
     position: fixed;
