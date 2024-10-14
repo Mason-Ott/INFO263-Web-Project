@@ -1,3 +1,16 @@
+.needingMaintenance {
+    color: red;
+    font-weight: bold;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    line-height: 1.5;
+    padding: 10px 0;
+}
+
 .pagination-text {
     color: grey;
 }
