@@ -13,18 +13,20 @@
 <body>
     <!-- Navigation Bar -->
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="vehicles.php">Vehicles</a></li>
-                <li><a href="trips.php">Trips</a></li>
-                <li><a href="maintenance.php">Maintenance</a></li>
-                <li><a href="relocations.php">Relocations</a></li>
-                <li><a href="vehicle_lifetime.php">Vehicle Lifetime</a></li>
-                <li><a href="charts.php">Charts</a></li>
-                <li><a href="admin_login.php">Database Admin Login</a></li>
-            </ul>
-        </nav>
+        <div class ="topnav">
+            <nav>
+                <ul>
+                    <a href="index.php">Home</a>
+                    <a href="vehicles.php">Vehicles</a>
+                    <a href="trips.php">Trips</a>
+                    <a href="maintenance.php">Maintenance</a>
+                    <a href="relocations.php">Relocations</a>
+                    <a href="vehicle_lifetime.php">Vehicle Lifetime</a>
+                    <a href="charts.php">Charts</a>
+                    <a href="admin_login.php">Database Admin Login</a>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <div class="container">
