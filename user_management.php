@@ -9,6 +9,7 @@ require_once 'PHP_Handlers/user_management_handler.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management System</title>
+    <link rel="stylesheet" href="CSS_Files/base.css">
     <link rel="stylesheet" href="CSS_Files/user_management.css">
 </head>
 <body>

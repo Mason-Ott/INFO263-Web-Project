@@ -6,6 +6,7 @@
     <title>Vehicle Lifetime</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="JS_Handlers/vehicle_lifetime_handler.js"></script>
+    <link rel="stylesheet" href="CSS_Files/base.css">
     <link rel="stylesheet" href="CSS_Files/vehicle_lifetime.css">
 </head>
 <body>
@@ -38,7 +39,7 @@
         <div class="pagination"></div>
 
         <!-- Div for vehicle data -->
-        <section class="vehicledata-section" id="data"></section>
+        <section class="data-section" id="data"></section>
 
     </div>
     <script>

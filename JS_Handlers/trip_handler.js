@@ -144,7 +144,7 @@ function getTripData(page = 1) {
                 data.data.forEach(function (trip) {
                     var durationUnit = trip.duration == 1 ? 'day' : 'days';
                     output += `
-                    <div class="trip"> 
+                    <div class="cell"> 
                         Trip ID: ${trip.trip_id}<br> 
                         Start_date: ${trip.start_date}<br>
                         End_date: ${trip.end_date}<br> 

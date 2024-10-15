@@ -145,7 +145,7 @@ function getRelocationData(page = 1) {
                 // Display the data in the table
                 data.data.forEach(function (relocation) {
                     output += `
-                    <div class="relocation"> 
+                    <div class="cell"> 
                         Relocation ID: ${relocation.relocation_id}<br> 
                         Start_date: ${relocation.start_date}<br>
                         End_date: ${relocation.end_date}<br> 

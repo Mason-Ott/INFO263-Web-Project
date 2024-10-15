@@ -28,7 +28,7 @@ function getVehicleData(page, value) {
             data.data.forEach(function (vehicle) {
                 // Output vehicle data
                 output += `
-                    <div class="vehicle"> 
+                    <div class="cell"> 
                         Vehicle_rego: <a href="vehicle.php?rego=${vehicle.vehicle_rego}">${vehicle.vehicle_rego}</a> <br>
                         Days of Service: ${vehicle.service_days}<br>
                         Number of Trips: ${vehicle.no_of_trips}<br>

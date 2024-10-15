@@ -54,7 +54,7 @@ function getVehicleData(page1=1, page2=1, page3=1) {
             if (data.trips.length > 0) {
                 data.trips.forEach(function (trip) {
                     tripOutput += `
-                    <div class="vehicle"> 
+                    <div class="cell"> 
                         Start Date: ${trip.start_date}<br>
                         End Date: ${trip.end_date}<br> 
                         Origin: ${trip.origin}<br> 
@@ -73,7 +73,7 @@ function getVehicleData(page1=1, page2=1, page3=1) {
             if (data.relocations.length > 0) {
                 data.relocations.forEach(function (relocation) {
                     relocationOutput += `
-                    <div class="vehicle"> 
+                    <div class="cell"> 
                         Start Date: ${relocation.start_date}<br>
                         End Date: ${relocation.end_date}<br> 
                         Origin: ${relocation.origin}<br> 
@@ -93,7 +93,7 @@ function getVehicleData(page1=1, page2=1, page3=1) {
             if (data.maintenance.length > 0) {
                 data.maintenance.forEach(function (maintenance) {
                     maintenanceOutput += `
-                    <div class="vehicle"> 
+                    <div class="cell"> 
                         Start Day: ${maintenance.start_date}<br> 
                         End Day: ${maintenance.end_date}<br>
                         Location: ${maintenance.location}<br> 

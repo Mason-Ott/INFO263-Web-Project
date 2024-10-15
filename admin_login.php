@@ -8,6 +8,7 @@ require_once 'PHP_Handlers/admin_login_handler.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Database Admin Login</title>
+    <link rel="stylesheet" href="CSS_Files/base.css">
     <link rel="stylesheet" href="CSS_Files/admin_login.css">
 </head>
 <body>

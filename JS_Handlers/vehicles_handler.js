@@ -130,7 +130,7 @@ function getVehicleData(page = 1) {
                 // Display the data in the table
                 data.data.forEach(function (vehicle) {
                     output += `
-                    <div class="vehicle"> 
+                    <div class="cell"> 
                         Vehicle_rego: <a href="vehicle.php?rego=${vehicle.vehicle_rego}">${vehicle.vehicle_rego}</a> <br>
                         Vehicle Category: ${vehicle.vehicle_category}<br>
                         Odometer: ${vehicle.odometer}<br> 

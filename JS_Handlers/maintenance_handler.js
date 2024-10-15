@@ -133,7 +133,7 @@ function getMaintenanceData(page = 1) {
                 // Display the data in the table
                 $.each(data.data, function(index, maintenance) {
                     output += `
-                <div class="maintenance"> 
+                <div class="cell"> 
                     Maintenance ID: ${maintenance.maintenance_id}<br> 
                     Start_date: ${maintenance.start_date}<br>
                     End_date: ${maintenance.end_date}<br> 
