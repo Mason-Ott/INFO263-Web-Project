@@ -50,9 +50,23 @@ function showQuarterlyIndicatorsChart(data) {
             ]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false, // Allow chart to adjust height based on container size
             scales: {
+                x: {
+                    ticks: {
+                        maxRotation: 0,  // Prevent x-axis labels from rotating too much
+                        minRotation: 0,
+                        font: {
+                            size: window.innerWidth < 600 ? 10 : 14, // Smaller font on small screens
+                        }
+                    }
+                },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    font: {
+                        size: window.innerWidth < 600 ? 10 : 14, // Smaller font on small screens
+                    }
                 }
             },
             plugins: {
@@ -61,6 +75,18 @@ function showQuarterlyIndicatorsChart(data) {
                     text: 'Quarterly Indicators',
                     font: {
                         size: 20
+                    }
+                },
+                legend: {
+                    labels: {
+                        font: {
+                            size: window.innerWidth < 600 ? 12 : 16, // Adjust legend font size
+                        }
+                    }
+                },
+                tooltip: {
+                    bodyFont: {
+                        size: window.innerWidth < 600 ? 10 : 14,
                     }
                 }
             }
@@ -166,6 +192,7 @@ function showTripsChart(data) {
             ]
         },
         options: {
+            maintainAspectRatio: true,  // Ensure chart maintains aspect ratio
             elements: {
                 line: {
                     fill: false
@@ -184,11 +211,10 @@ function showTripsChart(data) {
                         display: true,
                         text: 'Month (YYYY-MM)'
                     },
+                    autoSkip: true,
                     ticks: {
-                        autoSkip: false,
-                        callback: function(value, index, values) {
-
-                            return this.getLabelForValue(value);
+                        font: {
+                            size: window.innerWidth < 850 ? 10 : 14, // Smaller font on mobile
                         }
                     }
                 }

@@ -49,14 +49,14 @@
         </div>
     </div>
 
-    <div class="chart-container">
+    <div class="chart-container1">
         <!-- Quarterly Indicators Chart -->
         <canvas id="myChart" width="400" height="200"></canvas>
     </div>
 
-    <div class="chart-container">
+    <div class="chart-container2">
         <!-- Trips Chart -->
-        <canvas id="tripsChart" width="400" height="200"></canvas>
+        <canvas id="tripsChart" width="400" height="300" ></canvas>
     </div>
 
     <script>

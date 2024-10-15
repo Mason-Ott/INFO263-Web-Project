@@ -13,14 +13,26 @@ th, td {
     text-align: left;
 }
 
-.chart-container {
+.chart-container1 {
     width: 85vw;
-    height: 85vh;
+    height: 50vw;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 100px;
-    display: inherit;
+    margin-bottom: 1vw;
     justify-content: center;
-    align-items: center;
 }
 
+.chart-container2 {
+    width: 85vw;
+    height: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1vw;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .chart-container {
+        width: 95vw; /* Increase width on smaller screens */
+    }
+}
