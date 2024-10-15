@@ -11,23 +11,35 @@
 
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <header>
-        <div class ="topnav">
-            <nav>
-                <ul>
-                    <a href="index.php">Home</a>
-                    <a class ="active" href="vehicles.php">Vehicles</a>
-                    <a href="trips.php">Trips</a>
-                    <a href="maintenance.php">Maintenance</a>
-                    <a href="relocations.php">Relocations</a>
-                    <a href="vehicle_lifetime.php">Vehicle Lifetime</a>
-                    <a href="charts.php">Charts</a>
-                    <a href="admin_login.php">Database Admin Login</a>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<script>
+    <!-- Toggle Navigation Hamburger-->
+    function toggleMenu() {
+        const nav = document.getElementById('nav');
+        const topnav = document.querySelector('.topnav');
+        nav.classList.toggle('active');
+        topnav.classList.toggle('active');
+        console.log('Hamburger clicked, nav active:', nav.classList.contains('active'));
+    }
+</script>
+
+<!-- Navigation Bar -->
+<header>
+    <div class="topnav">
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">&#9776;</div>
+        <nav id="nav">
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <li><a class="active"href="vehicles.php">Vehicles</a></li>
+                <li><a href="trips.php">Trips</a></li>
+                <li><a href="maintenance.php">Maintenance</a></li>
+                <li><a href="relocations.php">Relocations</a></li>
+                <li><a href="vehicle_lifetime.php">Vehicle Lifetime</a></li>
+                <li><a href="charts.php">Charts</a></li>
+                <li><a href="admin_login.php">Database Admin Login</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
     <div class="container">
         <!-- Header displaying number of vehicles based of filters -->
@@ -83,19 +95,19 @@
         </div>
 
         <div class="row text-center">
-            <div class="col-4 ">
+            <div class="col-3 ">
                 <!-- Text Input for Minimum Odometer -->
                 <label for="odometerMin">Minimum Odometer:</label>
                 <input type="number" id="odometerMin" step="1000" min="0" max="70000" value="0" oninput="getVehicleData()" placeholder="Minimum Odometer">
             </div>
 
-            <div class="col-4">
+            <div class="col-3">
                 <!-- Text Input for Maximum Odometer -->
                 <label for="odometerMax">Maximum Odometer:</label>
                 <input type="number" id="odometerMax" step="1000" min="0" max="70000" value="70000"  oninput="getVehicleData()" placeholder="Maximum Odometer">
             </div>
 
-            <div class="col-4">
+            <div class="col-3">
                 <!-- Checkbox for requires maintenance -->
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="1" id="requiresMaintenance" oninput="getVehicleData()">
@@ -104,10 +116,8 @@
                     </label>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col">
+            <div class="col-3">
                 <!-- Dropdown for sort by options-->
                 Sort by
                 <div class="d-inline-flex align-items-center">

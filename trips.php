@@ -11,19 +11,31 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <script>
+        <!-- Toggle Navigation Hamburger-->
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            const topnav = document.querySelector('.topnav');
+            nav.classList.toggle('active');
+            topnav.classList.toggle('active');
+            console.log('Hamburger clicked, nav active:', nav.classList.contains('active'));
+        }
+    </script>
+
     <!-- Navigation Bar -->
     <header>
-        <div class ="topnav">
-            <nav>
+        <div class="topnav">
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">&#9776;</div>
+            <nav id="nav">
                 <ul>
-                    <a href="index.php">Home</a>
-                    <a href="vehicles.php">Vehicles</a>
-                    <a class ="active" href="trips.php">Trips</a>
-                    <a href="maintenance.php">Maintenance</a>
-                    <a href="relocations.php">Relocations</a>
-                    <a href="vehicle_lifetime.php">Vehicle Lifetime</a>
-                    <a href="charts.php">Charts</a>
-                    <a href="admin_login.php">Database Admin Login</a>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="vehicles.php">Vehicles</a></li>
+                    <li><a class="active" href="trips.php">Trips</a></li>
+                    <li><a href="maintenance.php">Maintenance</a></li>
+                    <li><a href="relocations.php">Relocations</a></li>
+                    <li><a href="vehicle_lifetime.php">Vehicle Lifetime</a></li>
+                    <li><a href="charts.php">Charts</a></li>
+                    <li><a href="admin_login.php">Database Admin Login</a></li>
                 </ul>
             </nav>
         </div>

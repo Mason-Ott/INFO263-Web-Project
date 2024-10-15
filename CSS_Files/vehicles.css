@@ -3,19 +3,5 @@
     font-weight: bold;
 }
 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: inherit; /* Inherit the body background image */
-    background-size: inherit;
-    background-position: inherit;
-    background-repeat: inherit;
-    filter: grayscale(85%); /* Apply grayscale filter to the image */
-    z-index: -1; /* Keep the background behind other content */
-}
 
 

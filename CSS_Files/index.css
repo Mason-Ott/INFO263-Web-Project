@@ -19,7 +19,12 @@ body::before {
     z-index: -1; /* Keep the background behind other content */
 }
 
-.summary-section {
+h1 {
+    background: rgba(51, 51, 51, 0.50);
+    color: #f9f9f9;
+}
+
+.section {
     background-color: rgba(51, 51, 51, 0.50);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -29,62 +34,34 @@ body::before {
     margin: 0 auto;
 }
 
-.summary-category {
+.category {
     background-color: #f9f9f9;
-    padding: 15px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.summary-category h3 {
+.category h3 {
+    font-size: 1.5em;
     margin-bottom: 10px;
-    font-size: 1.2em;
-    text-align: center;
+    color: #333;
 }
 
-.summary-category p, .summary-category ul {
+.category p {
     margin: 5px 0;
+    font-size: 1.25em;
 }
 
-.summary-category span {
-    font-weight: bold;
+@media (max-width: 1180px) {
+    .section {
+        grid-template-columns: repeat(2, 1fr); /* For Medium screens, set two column */
+    }
 }
 
-.cartype-section {
-    background-color: rgba(53, 53, 53, 0.50);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
-    width: 66%;
-    margin: 0 auto;
-}
-
-.cartype-category {
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.50);
-}
-
-.cartype-category h3 {
-    margin-bottom: 10px;
-    font-size: 1.2em;
-    text-align: center;
-}
-
-.cartype-category p, .summary-category ul {
-    margin: 5px 0;
-}
-
-.cartype-category span {
-    font-weight: bold;
-}
-
-h2 {
-    text-align: center;
-    color: #f9f9f9;
-    background: rgba(51, 51, 51, 0.50);
-    padding: 10px;
+@media (max-width: 870px) {
+    .section {
+        grid-template-columns: 1fr; /* For smaller screens, set one column */
+    }
 }
 

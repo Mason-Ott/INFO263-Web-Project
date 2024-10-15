@@ -9,20 +9,43 @@ body {
     flex-direction: column;
     margin: auto;
 }
-
 .topnav {
     background-color: #333;
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* Space between hamburger and nav */
+    align-items: center; /* Center items vertically */
+    padding: 7px 7px 0px 7px;  /* Increase vertical padding for height */
+    position: relative; /* Set position for absolute children */
+    height: 60px; /* Optional: Set a fixed height */
+}
+
+.topnav nav {
+    display: flex; /* Use flex to align items */
+    justify-content: center; /* Center the items */
+    align-items: center; /* Center items vertically */
+    flex-grow: 1; /* Allow nav to grow */
+    background-color: #333; /* Ensure nav has background color */
+}
+
+.topnav ul {
+    display: flex; /* Keep items in a row by default */
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+.topnav li {
+    display: inline; /* Keep items inline */
+    margin: 0; /* Add margin between items */
 }
 
 .topnav a {
-    float: left;
     color: #f2f2f2;
     text-align: center;
-    padding: 16px 25px;
+    padding: 16px 25px; /* Adjust as necessary */
     text-decoration: none;
     font-size: 17px;
+    margin: 7px 10px 4px;
 }
 
 .topnav a:hover {
@@ -33,6 +56,75 @@ body {
 .topnav a.active {
     background-color: #72A0C1;
     color: white;
+}
+
+.hamburger {
+    display: none; /* Hide hamburger icon by default */
+    font-size: 40px; /* Increase size for visibility */
+    color: #f2f2f2; /* Match link color */
+    cursor: pointer; /* Change cursor on hover */
+    margin: 20px;
+}
+
+.topnav.active nav {
+    display: flex; /* Ensure nav is displayed when active */
+}
+
+
+/* Responsive Styles */
+@media screen and (max-width: 1300px) {
+    .topnav {
+        padding: 7px 7px 7px 7px;
+    }
+
+    .topnav nav {
+        display: none; /* Hide nav by default */
+        width: 100%; /* Full width */
+        flex-direction: column; /* Stack items vertically */
+        position: absolute; /* Position the nav absolutely */
+        top: 100%; /* Position below the nav */
+        left: 0; /* Align to the left */
+        background-color: #333; /* Set background for the dropdown */
+        z-index: 1; /* Bring nav above other elements */
+    }
+
+    .topnav.active nav {
+        display: flex; /* Show nav when hamburger is clicked */
+    }
+
+    .topnav a {
+        padding: 0px;
+    }
+
+    .topnav ul {
+        flex-direction: column; /* Stack links vertically */
+        width: 100%; /* Full width for nav links */
+    }
+
+    .topnav li {
+        width: 100%; /* Full width for each link */
+        text-align: center; /* Center text within links */
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger icon */
+    }
+
+    .topnav.active nav {
+        display: flex; /* Show nav when hamburger is clicked */
+    }
+
+    .topnav a.active {
+        background-color: #333;
+        color: #72A0C1;
+    }
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px;
 }
 
 .pagination-text {
