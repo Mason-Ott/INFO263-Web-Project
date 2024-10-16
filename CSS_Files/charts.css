@@ -15,7 +15,7 @@ th, td {
 
 .chart-container1 {
     width: 85vw;
-    height: 50vw;
+    height: 40vw;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1vw;
@@ -24,15 +24,26 @@ th, td {
 
 .chart-container2 {
     width: 85vw;
-    height: 70vw;
+    height: 44vw;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1vw;
     justify-content: center;
 }
 
-@media (max-width: 600px) {
-    .chart-container {
-        width: 95vw; /* Increase width on smaller screens */
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 900px) {
+    .chart-container1 {
+        width: 95vw;
+        height: 50vw;
+    }
+    .chart-container2 {
+        width: 95vw;
+        height: 60vw;
     }
 }

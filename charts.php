@@ -6,7 +6,6 @@
     <title>Charts</title>
     <link rel="stylesheet" href="CSS_Files/charts.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="CSS_Files/base.css">
     <script src="JS_Handlers/charts.js"></script>
@@ -51,12 +50,12 @@
 
     <div class="chart-container1">
         <!-- Quarterly Indicators Chart -->
-        <canvas id="myChart" width="400" height="200"></canvas>
+        <canvas id="myChart" width="400" height="190"></canvas>
     </div>
 
     <div class="chart-container2">
         <!-- Trips Chart -->
-        <canvas id="tripsChart" width="400" height="300" ></canvas>
+        <canvas id="tripsChart" width="400" height="210" ></canvas>
     </div>
 
     <script>
@@ -78,7 +77,6 @@
                 showTripsChart(data);
             }
         });
-
     </script>
 </body>
 </html>
