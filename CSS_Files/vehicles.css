@@ -3,14 +3,6 @@
     font-weight: bold;
 }
 
-/* Set the input fields and dropdowns to 66% width of the column */
-
-#vehicleType.btn.btn-secondary.dropdown-toggle
-{
-    width: 80%; /* Adjust the width to 66% */
-    margin: 0 auto; /* Center the input/dropdown within the column */
-}
-
 #requiresMaintenance.form-check-input {
     height: 35px;
     width: 17% !important;
@@ -18,30 +10,3 @@
     margin-left: 0;
 }
 
-/* Ensure inputs and dropdowns are below the text labels */
-.col-3 label {
-    display: block; /* Make the label a block to ensure the input appears below it */
-    margin-bottom: 0.5rem; /* Add some space between the label and input */
-}
-
-/* Adjust the dropdown toggle button (for both Vehicle Type and Sort by) */
-.dropdown-toggle {
-    display: block;
-    width: 100%; /* Button takes up full width of the parent div */
-}
-
-/* Ensure both buttons and container are 66% width */
-.sort-container {
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between; /* Ensures even spacing between buttons */
-}
-
-/* Set the sort direction button to fill the remaining space */
-#sort-direction {
-    width: 38%; /* Adjust to fill the remaining space evenly */
-    display: block;
-    background-color: #ffffff;
-
-}

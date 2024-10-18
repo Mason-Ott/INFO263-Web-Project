@@ -48,113 +48,108 @@
             </div>
         </div>
 
-        <div class="row">
-            <!-- Dropdown for Vehicle Category -->
-            <div class="col-2">
-                Vehicle Type
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span id="selectedVehicleType">ALL</span> <!-- Set default text here -->
-                    </button>
-                    <ul class="dropdown-menu" id="vehicleMenu">
-                        <li><button class="dropdown-item vehicle-item" type="button" data-category="ALL">ALL</button></li>
-                        <!-- retrieve distinct vehicle categories from database-->
-                        <?php
-                        require_once 'db.php';
-                        $categoriesQuery = "SELECT DISTINCT vehicle_category FROM vehicle";
-                        $categoriesStmt = $pdo->query($categoriesQuery);
-                        $vehicleCategories = $categoriesStmt->fetchAll(PDO::FETCH_ASSOC);
-                        foreach ($vehicleCategories as $vehicle_category): ?>
-                            <li>
-                                <button class="dropdown-item vehicle-item" type="button" data-category="<?= htmlspecialchars($vehicle_category['vehicle_category']); ?>">
-                                    <?= htmlspecialchars($vehicle_category['vehicle_category']); ?>
-                                </button>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Date input for Start Date -->
-            <div class="col-3">
-                <label for="startDate">Maintenance Start Date (From)</label>
-                <input type="date" id="startDate" class="form-control" name="startDate" onchange="getMaintenanceData()">
-            </div>
-
-            <!-- Date input for End Date -->
-            <div class="col-3">
-                <label for="endDate">Maintenance End Date (To)</label>
-                <input type="date" id="endDate" class="form-control" name="endDate" onchange="getMaintenanceData()">
-            </div>
-
-            <!-- Dropdown for Location -->
-            <div class="col-2">
-                Location
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span id="selectedLocation">ANY</span> <!-- Set default text here -->
-                    </button>
-                    <ul class="dropdown-menu" id="locationMenu">
-                        <li><button class="dropdown-item location-item" type="button" data-category="ANY">ANY</button></li>
-                        <!-- retrieve distinct locations from database-->
-                        <?php
-                        $locationQuery = $pdo->query("SELECT DISTINCT location FROM maintenance");
-                        $locationCategories = $locationQuery->fetchAll(PDO::FETCH_ASSOC);
-                        foreach ($locationCategories as $location): ?>
-                            <li>
-                                <button class="dropdown-item location-item" type="button" data-category="<?= htmlspecialchars($location['location']); ?>">
-                                    <?= htmlspecialchars($location['location']); ?>
-                                </button>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="row text-center">
-            <div class="col-4">
-                <!-- Text Input for Minimum Odometer -->
-                <label for="odometerMin">Minimum Odometer:</label>
-                <input type="number" id="odometerMin" step="1000" min="0" max="70000" value="0" oninput="getMaintenanceData()" placeholder="Minimum Odometer">
-            </div>
-
-            <div class="col-4">
-                <!-- Text Input for Maximum Odometer -->
-                <label for="odometerMax">Maximum Odometer:</label>
-                <input type="number" id="odometerMax" step="1000" min="0" max="70000" value="70000" oninput="getMaintenanceData()" placeholder="Maximum Odometer">
-            </div>
-
-            <div class="col-4">
-                <!-- Text Input for Registration -->
+        <div class="inputs">
+            <div class="row text-center">
+                <!-- Dropdown for Vehicle Category -->
                 <div class="col-3">
-                    <label for="rego">Rego:</label>
-                    <input type="text" id="rego" oninput="getMaintenanceData()" placeholder="Registration">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <!-- Dropdown for sort by options-->
-                Sort by
-                <div class="d-inline-flex align-items-center">
+                    <label for="vehicleType">Vehicle Type</label>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span id="selectedSortBy" data-category="vehicle_rego">Rego</span> <!-- Set default -->
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="vehicleType" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span id="selectedVehicleType">ALL</span> <!-- Set default -->
                         </button>
-                        <ul class="dropdown-menu" id="sortMenu">
-                            <li><button class="dropdown-item sort-item" type="button" data-category="vehicle_rego">Rego</button></li>
-                            <li><button class="dropdown-item sort-item" type="button" data-category="mileage">Odometer</button></li>
-                            <li><button class="dropdown-item sort-item" type="button" data-category="start_date">Start Date</button></li>
-                            <li><button class="dropdown-item sort-item" type="button" data-category="end_date">End Date</button></li>
+                        <ul class="dropdown-menu" id="vehicleMenu">
+                            <li><button class="dropdown-item vehicle-item" type="button" data-category="ALL">ALL</button></li>
+                            <!-- Retrieve distinct vehicle categories from database -->
+                            <?php
+                            require_once 'db.php';
+                            $categoriesQuery = "SELECT DISTINCT vehicle_category FROM vehicle";
+                            $categoriesStmt = $pdo->query($categoriesQuery);
+                            $vehicleCategories = $categoriesStmt->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($vehicleCategories as $vehicle_category): ?>
+                                <li>
+                                    <button class="dropdown-item vehicle-item" type="button" data-category="<?= htmlspecialchars($vehicle_category['vehicle_category']); ?>">
+                                        <?= htmlspecialchars($vehicle_category['vehicle_category']); ?>
+                                    </button>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
+                </div>
 
-                    <!-- Sort Direction Icon Button -->
-                    <button id="sort-direction" class="btn btn-light ms-2">
-                        <img id="sort-image" src="Resources/ascending-sort.png" alt="Sort Direction" style="width: 20px; height: 20px;">
-                    </button>
+                <div class="col-3">
+                    <!-- Text Input for Registration -->
+                    <label for="rego">Rego</label>
+                    <input type="text" id="rego" oninput="getVehicleData()" placeholder="Registration" class="form-control">
+                </div>
+                <!-- Dropdown for Location -->
+                <div class="col-3">
+                    <label for="location">Location</label>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="location" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span id="selectedLocation">ANY</span> <!-- Set default text here -->
+                        </button>
+                        <ul class="dropdown-menu" id="locationMenu">
+                            <li><button class="dropdown-item location-item" type="button" data-category="ANY">ANY</button></li>
+                            <!-- retrieve distinct locations from database-->
+                            <?php
+                            $locationQuery = $pdo->query("SELECT DISTINCT location FROM maintenance");
+                            $locationCategories = $locationQuery->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($locationCategories as $location): ?>
+                                <li>
+                                    <button class="dropdown-item location-item" type="button" data-category="<?= htmlspecialchars($location['location']); ?>">
+                                        <?= htmlspecialchars($location['location']); ?>
+                                    </button>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <label for="sortBy">Sort by</label>
+                    <div class="sort-container">
+                        <div class="dropdown w-100">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="sortBy" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span id="selectedSortBy" data-category="vehicle_rego">Rego</span>
+                            </button>
+                            <ul class="dropdown-menu" id="sortMenu">
+                                <li><button class="dropdown-item sort-item" type="button" data-category="vehicle_rego">Rego</button></li>
+                                <li><button class="dropdown-item sort-item" type="button" data-category="odometer">Odometer</button></li>
+                                <li><button class="dropdown-item sort-item" type="button" data-category="commissioned_date">Commission Date</button></li>
+                                <li><button class="dropdown-item sort-item" type="button" data-category="decommissioned_date">Decommission Date</button></li>
+                                <li><button class="dropdown-item sort-item" type="button" data-category="distance_since_maintenance">Distance since Maintenance</button></li>
+                            </ul>
+                        </div>
+                        <button id="sort-direction" class="btn btn-light">
+                            <img id="sort-image" src="Resources/ascending-sort.png" alt="Sort Direction" style="width: 20px; height: 20px;">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-3">
+                    <!-- Text Input for Minimum Odometer -->
+                    <label for="odometerMin">Minimum Odometer:</label>
+                    <input type="number" id="odometerMin" step="1000" min="0" max="70000" value="0" oninput="getMaintenanceData()" placeholder="Minimum Odometer">
+                </div>
+
+                <div class="col-3">
+                    <!-- Text Input for Maximum Odometer -->
+                    <label for="odometerMax">Maximum Odometer:</label>
+                    <input type="number" id="odometerMax" step="1000" min="0" max="70000" value="70000" oninput="getMaintenanceData()" placeholder="Maximum Odometer">
+                </div>
+
+                <!-- Date input for Start Date -->
+                <div class="col-3">
+                    <label for="startDate">Maintenance Start Date (From)</label>
+                    <input type="date" id="startDate" class="form-control" name="startDate" onchange="getMaintenanceData()">
+                </div>
+
+                <!-- Date input for End Date -->
+                <div class="col-3">
+                    <label for="endDate">Maintenance End Date (To)</label>
+                    <input type="date" id="endDate" class="form-control" name="endDate" onchange="getMaintenanceData()">
                 </div>
             </div>
         </div>
