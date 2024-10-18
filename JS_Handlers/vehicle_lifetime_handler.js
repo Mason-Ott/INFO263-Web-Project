@@ -130,7 +130,7 @@ function handlePagination(currentPage, totalPages) {
     // Page Number Text
     var pageNumber = document.createElement('span');
     pageNumber.textContent = currentPage;
-    pageNumber.classList.add('pagination-text');
+    pageNumber.classList.add('pagination-current');
     paginationDiv.appendChild(pageNumber);
     paginationDiv.appendChild(document.createTextNode(' '));
 

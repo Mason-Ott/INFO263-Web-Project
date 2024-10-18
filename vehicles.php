@@ -49,97 +49,92 @@
             </div>
         </div>
 
-        <div class="row">
-            <!-- Dropdown for Vehicle Category -->
-            <div class="col-2">
-                Vehicle Type
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span id="selectedVehicleType">ALL</span> <!-- Set default -->
-                    </button>
-                    <ul class="dropdown-menu" id="vehicleMenu">
-                        <li><button class="dropdown-item vehicle-item" type="button" data-category="ALL">ALL</button></li>
-                        <!-- retrieve distinct vehicle categories from database-->
-                        <?php
-                        require_once 'db.php';
-                        $categoriesQuery = "SELECT DISTINCT vehicle_category FROM vehicle";
-                        $categoriesStmt = $pdo->query($categoriesQuery);
-                        $vehicleCategories = $categoriesStmt->fetchAll(PDO::FETCH_ASSOC);
-                        foreach ($vehicleCategories as $vehicle_category): ?>
-                            <li>
-                                <button class="dropdown-item vehicle-item" type="button" data-category="<?= htmlspecialchars($vehicle_category['vehicle_category']); ?>">
-                                    <?= htmlspecialchars($vehicle_category['vehicle_category']); ?>
-                                </button>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Date input for Commissioned date -->
-            <div class="col-3">
-                <label for="commissioned">Commissioned (From)</label>
-                <input type="date" id="commissioned" class="form-control" name="commissioned" onchange="getVehicleData()">
-            </div>
-
-            <!-- Date input for Decommissioned date -->
-            <div class="col-3">
-                <label for="decommissioned">Decomissioned (To)</label>
-                <input type="date" id="decommissioned" class="form-control" name="decommissioned" onchange="getVehicleData()">
-            </div>
-
-            <div class="col-3">
-                <label for="rego">Rego:</label>
-                <input type="text" id="rego" oninput="getVehicleData()" placeholder="Registeration">
-            </div>
-        </div>
-
-        <div class="row text-center">
-            <div class="col-3 ">
-                <!-- Text Input for Minimum Odometer -->
-                <label for="odometerMin">Minimum Odometer:</label>
-                <input type="number" id="odometerMin" step="1000" min="0" max="70000" value="0" oninput="getVehicleData()" placeholder="Minimum Odometer">
-            </div>
-
-            <div class="col-3">
-                <!-- Text Input for Maximum Odometer -->
-                <label for="odometerMax">Maximum Odometer:</label>
-                <input type="number" id="odometerMax" step="1000" min="0" max="70000" value="70000"  oninput="getVehicleData()" placeholder="Maximum Odometer">
-            </div>
-
-            <div class="col-3">
-                <!-- Checkbox for requires maintenance -->
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="1" id="requiresMaintenance" oninput="getVehicleData()">
-                    <label class="form-check-label" for="requiresMaintenance">
-                        Requires Maintenance
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-3">
-                <!-- Dropdown for sort by options-->
-                Sort by
-                <div class="d-inline-flex align-items-center">
+        <div class="inputs">
+            <div class="row text-center">
+                <div class="col-3">
+                    <label for="vehicleType">Vehicle Type</label>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span id="selectedSortBy" data-category="vehicle_rego">Rego</span> <!-- Set default -->
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="vehicleType" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span id="selectedVehicleType">ALL</span> <!-- Set default -->
                         </button>
-                        <ul class="dropdown-menu" id="sortMenu">
-                            <li><button class="dropdown-item sort-item" type="button" data-category="vehicle_rego">Rego</button></li>
-                            <li><button class="dropdown-item sort-item" type="button" data-category="odometer">Odometer</button></li>
-                            <li><button class="dropdown-item sort-item" type="button" data-category="commissioned_date">Commission Date</button></li>
-                            <li><button class="dropdown-item sort-item" type="button" data-category="decommissioned_date">Decommission Date</button></li>
-                            <li><button class="dropdown-item sort-item" type="button" data-category="distance_since_maintenance">Distance since Maintenance</button></li>
+                        <ul class="dropdown-menu" id="vehicleMenu">
+                            <li><button class="dropdown-item vehicle-item" type="button" data-category="ALL">ALL</button></li>
+                            <!-- Retrieve distinct vehicle categories from database -->
+                            <?php
+                            require_once 'db.php';
+                            $categoriesQuery = "SELECT DISTINCT vehicle_category FROM vehicle";
+                            $categoriesStmt = $pdo->query($categoriesQuery);
+                            $vehicleCategories = $categoriesStmt->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($vehicleCategories as $vehicle_category): ?>
+                                <li>
+                                    <button class="dropdown-item vehicle-item" type="button" data-category="<?= htmlspecialchars($vehicle_category['vehicle_category']); ?>">
+                                        <?= htmlspecialchars($vehicle_category['vehicle_category']); ?>
+                                    </button>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
+                </div>
 
-                    <!-- Sort Direction Icon Button -->
-                    <button id="sort-direction" class="btn btn-light ms-2">
-                        <img id="sort-image" src="Resources/ascending-sort.png" alt="Sort Direction" style="width: 20px; height: 20px;">
-                    </button>
+                <div class="col-3">
+                    <label for="rego">Rego</label>
+                    <input type="text" id="rego" oninput="getVehicleData()" placeholder="Registration" class="form-control">
+                </div>
+
+                <div class="col-3">
+                    <div class="check">
+                        <label class="form-check-label" for="requiresMaintenance">
+                            Requires Maintenance
+                        </label>
+                        <input class="form-check-input check-input" type="checkbox" value="1" id="requiresMaintenance" oninput="getVehicleData()">
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <label for="sortBy">Sort by</label>
+                    <div class="sort-container">
+                        <div class="dropdown w-100">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="sortBy" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span id="selectedSortBy" data-category="vehicle_rego">Rego</span>
+                            </button>
+                            <ul class="dropdown-menu" id="sortMenu">
+                                <li><button class="dropdown-item sort-item" type="button" data-category="vehicle_rego">Rego</button></li>
+                                <li><button class="dropdown-item sort-item" type="button" data-category="odometer">Odometer</button></li>
+                                <li><button class="dropdown-item sort-item" type="button" data-category="commissioned_date">Commission Date</button></li>
+                                <li><button class="dropdown-item sort-item" type="button" data-category="decommissioned_date">Decommission Date</button></li>
+                                <li><button class="dropdown-item sort-item" type="button" data-category="distance_since_maintenance">Distance since Maintenance</button></li>
+                            </ul>
+                        </div>
+                        <button id="sort-direction" class="btn btn-light">
+                            <img id="sort-image" src="Resources/ascending-sort.png" alt="Sort Direction" style="width: 20px; height: 20px;">
+                        </button>
+                    </div>
                 </div>
             </div>
+
+            <div class="row text-center">
+
+                <div class="col-3">
+                    <label for="odometerMin">Minimum Odometer</label>
+                    <input type="number" id="odometerMin" step="1000" min="0" max="70000" value="0" oninput="getVehicleData()" placeholder="Minimum Odometer" class="form-control">
+                </div>
+
+                <div class="col-3">
+                    <label for="odometerMax">Maximum Odometer</label>
+                    <input type="number" id="odometerMax" step="1000" min="0" max="70000" value="70000" oninput="getVehicleData()" placeholder="Maximum Odometer" class="form-control">
+                </div>
+
+                <div class="col-3">
+                    <label for="commissioned">Commissioned (From)</label>
+                    <input type="date" id="commissioned" class="form-control" name="commissioned" onchange="getVehicleData()">
+                </div>
+
+                <div class="col-3">
+                    <label for="decommissioned">Decommissioned (To)</label>
+                    <input type="date" id="decommissioned" class="form-control" name="decommissioned" onchange="getVehicleData()">
+                </div>
+            </div>
+
         </div>
 
         <div class="row">

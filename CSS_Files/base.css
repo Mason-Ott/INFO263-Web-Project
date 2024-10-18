@@ -127,14 +127,39 @@ h1 {
     padding: 10px;
 }
 
-.pagination-text {
-    color: grey;
+.pagination {
+    justify-content: center;
+    padding-top: 20px;
 }
 
+.pagination-current {
+    margin: 4px;
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #72A0C1;
+    color: white;
+    border-radius: 8px;
+}
+
+.pagination-text {
+    margin: 4px;
+    text-decoration: none;
+    color: black;
+    padding: 8px 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
 .pagination a, .pagination1 a, .pagination2 a, .pagination3 a {
-    margin: 0 10px;  /* Adjust the spacing between the links */
+    margin: 4px;  /* Adjust the spacing between the links */
     text-decoration: none;
     color: blue; /* Change link color */
+    padding: 8px 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .pagination a:hover, .pagination1 a:hover, .pagination2 a:hover, .pagination3 a:hover {
@@ -147,7 +172,7 @@ h1 {
     grid-template-columns: repeat(5, 1fr); /* Creates 5 equal-width columns */
     gap: 20px; /* Adds 20px space between grid items */
     padding: 20px;
-    width: 66%;
+    width: 78%;
     margin: 0 auto;
 }
 
@@ -157,3 +182,26 @@ h1 {
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
+.inputs {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px 10px 20px 10px;
+}
+
+label {
+    font-family: 'Arial', sans-serif; /* You can change to your desired font */
+    font-size: 1.2rem; /* Adjust the size as needed */
+    font-weight: bold; /* Change to normal if you don't want bold */
+    color: #333; /* Change to your preferred color */
+    margin-bottom: 0.5rem; /* Maintain space below the label */
+}
+
+input {
+    width: 80% !important;
+    margin: 0 auto;
+}
+
+
+
