@@ -70,6 +70,113 @@ body {
     display: flex; /* Ensure nav is displayed when active */
 }
 
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px;
+}
+
+.pagination {
+    justify-content: center;
+    padding-top: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.pagination-current {
+    margin: 4px;
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #72A0C1;
+    color: white;
+    border-radius: 8px;
+}
+
+.pagination-text {
+    margin: 4px;
+    text-decoration: none;
+    color: black;
+    padding: 8px 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.pagination a, .pagination1 a, .pagination2 a, .pagination3 a {
+    margin: 4px;  /* Adjust the spacing between the links */
+    text-decoration: none;
+    color: blue; /* Change link color */
+    padding: 8px 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pagination a:hover, .pagination1 a:hover, .pagination2 a:hover, .pagination3 a:hover {
+    text-decoration: underline;
+    color: darkblue; /* Change color on hover */
+}
+
+.data-section {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Creates 5 equal-width columns */
+    gap: 20px; /* Adds 20px space between grid items */
+    padding: 20px;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.cell {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.inputs {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px 10px 20px 10px;
+}
+
+label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+}
+
+input {
+    width: 80% !important;
+    margin: 0 auto;
+}
+
+.col-3 label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.sort-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+#sort-direction {
+    width: 38%;
+    display: block;
+    background-color: #ffffff;
+}
+
+button.btn.btn-secondary.dropdown-toggle
+{
+    width: 80%; /* Adjust the width to 66% */
+    margin: 0 auto; /* Center the input/dropdown within the column */
+}
 
 /* Responsive Styles */
 @media screen and (max-width: 1300px) {
@@ -118,117 +225,46 @@ body {
         background-color: #333;
         color: #72A0C1;
     }
+
+    label {
+        font-size: 20px;
+    }
+
+    .data-section {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
 }
 
-h1 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    text-align: center;
-    padding: 10px;
+@media screen and (max-width: 1000px) {
+    label {
+        font-size: 14px;
+    }
+
+    input {
+        width: 90%; /* Increase the width on medium screens */
+        padding: 8px; /* Adjust padding */
+        font-size: 14px !important;
+    }
+
+    .data-section {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
-.pagination {
-    justify-content: center;
-    padding-top: 20px;
+@media screen and (max-width: 600px) {
+    label {
+        font-size: 10px;
+    }
+
+    input {
+        width: 100%; /* Full width on small screens */
+        padding: 6px; /* Adjust padding further */
+        font-size: 10px !important;
+        justify-content: center;
+    }
+
+    .data-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
-
-.pagination-current {
-    margin: 4px;
-    text-decoration: none;
-    padding: 8px 16px;
-    background-color: #72A0C1;
-    color: white;
-    border-radius: 8px;
-}
-
-.pagination-text {
-    margin: 4px;
-    text-decoration: none;
-    color: black;
-    padding: 8px 16px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-
-.pagination a, .pagination1 a, .pagination2 a, .pagination3 a {
-    margin: 4px;  /* Adjust the spacing between the links */
-    text-decoration: none;
-    color: blue; /* Change link color */
-    padding: 8px 16px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.pagination a:hover, .pagination1 a:hover, .pagination2 a:hover, .pagination3 a:hover {
-    text-decoration: underline;
-    color: darkblue; /* Change color on hover */
-}
-
-.data-section {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Creates 5 equal-width columns */
-    gap: 20px; /* Adds 20px space between grid items */
-    padding: 20px;
-    width: 78%;
-    margin: 0 auto;
-}
-
-.cell {
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.inputs {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px 10px 20px 10px;
-}
-
-label {
-    font-family: 'Arial', sans-serif; /* You can change to your desired font */
-    font-size: 1.2rem; /* Adjust the size as needed */
-    font-weight: bold; /* Change to normal if you don't want bold */
-    color: #333; /* Change to your preferred color */
-    margin-bottom: 0.5rem; /* Maintain space below the label */
-}
-
-input {
-    width: 80% !important;
-    margin: 0 auto;
-}
-
-.col-3 label {
-    display: block; /* Make the label a block to ensure the input appears below it */
-    margin-bottom: 0.5rem; /* Add some space between the label and input */
-}
-
-.dropdown-toggle {
-    display: block;
-    width: 100%; /* Button takes up full width of the parent div */
-}
-
-.sort-container {
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between; /* Ensures even spacing between buttons */
-}
-
-#sort-direction {
-    width: 38%; /* Adjust to fill the remaining space evenly */
-    display: block;
-    background-color: #ffffff;
-}
-
-button.btn.btn-secondary.dropdown-toggle
-{
-    width: 80%; /* Adjust the width to 66% */
-    margin: 0 auto; /* Center the input/dropdown within the column */
-}
-
