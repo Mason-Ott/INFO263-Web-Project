@@ -9,6 +9,7 @@ body {
     flex-direction: column;
     margin: auto;
 }
+
 .topnav {
     background-color: #333;
     display: flex;
@@ -17,7 +18,7 @@ body {
     padding: 7px 7px 0px 7px;
     position: relative;
     height: 60px;
-    width: 120%;
+    width: 100%;
 }
 
 .topnav nav {
@@ -61,7 +62,7 @@ body {
 
 .hamburger {
     display: none;
-    font-size: 40px;
+    font-size: 28px;
     color: #f2f2f2;
     cursor: pointer;
     margin: 20px;
