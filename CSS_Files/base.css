@@ -149,6 +149,16 @@ a:hover {
     font-family: 'Roboto', sans-serif;
 }
 
+
+h3 {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    display: inline;
+    white-space: nowrap;
+}
+
 h4 {
     font-size: 26px;
     font-family: 'Roboto', sans-serif;
@@ -162,6 +172,10 @@ h5 {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     display: inline;
+    white-space: nowrap;
+}
+
+.nowrap {
     white-space: nowrap;
 }
 
@@ -199,6 +213,10 @@ input {
     margin-top: 7px;
 }
 
+.vehicle {
+    font-size: 26px;
+}
+
 .sort-container {
     width: 80%;
     margin: 0 auto;
@@ -228,6 +246,26 @@ h2 {
     font-size: 30px;
     font-family: 'Roboto', sans-serif;
     text-align: center;
+    font-weight: bold;
+}
+
+.needingMaintenance {
+    color: red;
+    font-weight: bold;
+    height: auto;
+    width: auto;
+}
+
+.chart-container {
+    width: 85vw;
+    height: 42vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1vw;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive Styles */

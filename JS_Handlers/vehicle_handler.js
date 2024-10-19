@@ -35,17 +35,17 @@ function getVehicleData(page1=1, page2=1, page3=1) {
             if (data.vehicle) {
                 vehicleOutput = `
                     <div class="vehicle"> 
-                        Type: ${data.vehicle.vehicle_category}<br> 
-                        Odometer: ${data.vehicle.odometer}<br>
-                        Commissioned: ${data.vehicle.commissioned_date}<br>`
+                        <h3>Type:</h3> ${data.vehicle.vehicle_category}<br> 
+                        <h3>Odometer:</h3> ${data.vehicle.odometer}<br>
+                        <h3>Commissioned:</h3> ${data.vehicle.commissioned_date}<br>`
                 if (data.vehicle.decommissioned_date) {
-                    vehicleOutput += `Decommissioned: ${data.vehicle.decommissioned_date}<br>`;
+                    vehicleOutput += `<h5>Decommissioned:</h5> ${data.vehicle.decommissioned_date}<br>`;
                 }
                 if (data.vehicle.distance_since_maintenance >= 20000) {
                     vehicleOutput += `<div class="needingMaintenance">
-                            Requires Maintenance<br>
+                            <h5>Requires Maintenance</h5><br>
                         </div> 
-                        Distance Since Maintenance: ${data.vehicle.distance_since_maintenance}<br>`;
+                        <h5>Distance Since Maintenance:</h5> ${data.vehicle.distance_since_maintenance}<br>`;
                 }
                 vehicleOutput += `</div>`;
             }
@@ -54,12 +54,14 @@ function getVehicleData(page1=1, page2=1, page3=1) {
             if (data.trips.length > 0) {
                 data.trips.forEach(function (trip) {
                     tripOutput += `
-                    <div class="cell"> 
-                        Start Date: ${trip.start_date}<br>
-                        End Date: ${trip.end_date}<br> 
-                        Origin: ${trip.origin}<br> 
-                        Destination: ${trip.destination}<br> 
-                        Distance: ${trip.distance} <br>
+                    <div class="cell">
+                    <div class="nowrap">
+                        <h5>Start Date:</h5> ${trip.start_date}<br>
+                        <h5>End Date:</h5> ${trip.end_date}<br>
+                    </div> 
+                        <h5>Origin:</h5> ${trip.origin}<br> 
+                        <h5>Destination:</h5> ${trip.destination}<br> 
+                        <h5>Distance:</h5> ${trip.distance} km<br>
                     </div>`;
                 });
                 handlePagination(data.tripCount.currentPage, data.tripCount.totalPages, 'pagination1', 1);
@@ -73,12 +75,14 @@ function getVehicleData(page1=1, page2=1, page3=1) {
             if (data.relocations.length > 0) {
                 data.relocations.forEach(function (relocation) {
                     relocationOutput += `
-                    <div class="cell"> 
-                        Start Date: ${relocation.start_date}<br>
-                        End Date: ${relocation.end_date}<br> 
-                        Origin: ${relocation.origin}<br> 
-                        Destination: ${relocation.destination}<br> 
-                        Distance: ${relocation.distance} <br>
+                    <div class="cell">
+                    <div class="nowrap">
+                        <h5>Start Date:</h5> ${relocation.start_date}<br>
+                        <h5>End Date:</h5> ${relocation.end_date}<br>
+                    </div> 
+                        <h5>Origin:</h5> ${relocation.origin}<br> 
+                        <h5>Destination:</h5> ${relocation.destination}<br> 
+                        <h5>Distance:</h5> ${relocation.distance} km<br>
                     </div>`;
                 });
                 handlePagination(data.relocationCount.currentPage, data.relocationCount.totalPages, 'pagination2', 2);
@@ -94,10 +98,12 @@ function getVehicleData(page1=1, page2=1, page3=1) {
                 data.maintenance.forEach(function (maintenance) {
                     maintenanceOutput += `
                     <div class="cell"> 
-                        Start Day: ${maintenance.start_date}<br> 
-                        End Day: ${maintenance.end_date}<br>
-                        Location: ${maintenance.location}<br> 
-                        Odometer: ${maintenance.mileage}<br> 
+                        <div class="nowrap">
+                            <h5>Start Date:</h5> ${maintenance.start_date}<br>
+                            <h5>End Day:</h5> ${maintenance.end_date}<br>
+                        </div>
+                        <h5>Location:</h5> ${maintenance.location}<br> 
+                        <h5>Odometer:</h5> ${maintenance.mileage} km<br> 
                     </div>`;
                 });
                 handlePagination(data.maintenanceCount.currentPage, data.maintenanceCount.totalPages, 'pagination3', 3);

@@ -27,7 +27,18 @@ header {
 }
 
 /* Chart Containers */
-.chart-container1,
+.chart-container1 {
+    width: 85vw;
+    height: 40vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1vw;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .chart-container2 {
     width: 85vw;
     height: auto;
@@ -46,9 +57,14 @@ header {
 
 /* Responsive Chart Containers */
 @media (max-width: 900px) {
-    .chart-container1,
+    .chart-container1 {
+        width: 95vw;
+        height: 50vw;
+        padding: 1rem;
+    }
     .chart-container2 {
         width: 95vw;
+        height: 60vw;
         padding: 1rem;
     }
 }
