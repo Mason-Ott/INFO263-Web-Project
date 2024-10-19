@@ -12,37 +12,38 @@ body {
 .topnav {
     background-color: #333;
     display: flex;
-    justify-content: space-between; /* Space between hamburger and nav */
-    align-items: center; /* Center items vertically */
-    padding: 7px 7px 0px 7px;  /* Increase vertical padding for height */
-    position: relative; /* Set position for absolute children */
-    height: 60px; /* Optional: Set a fixed height */
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 7px 0px 7px;
+    position: relative;
+    height: 60px;
+    width: 120%;
 }
 
 .topnav nav {
-    display: flex; /* Use flex to align items */
-    justify-content: center; /* Center the items */
-    align-items: center; /* Center items vertically */
-    flex-grow: 1; /* Allow nav to grow */
-    background-color: #333; /* Ensure nav has background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    background-color: #333;
 }
 
 .topnav ul {
-    display: flex; /* Keep items in a row by default */
-    list-style-type: none; /* Remove bullet points */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 .topnav li {
-    display: inline; /* Keep items inline */
-    margin: 0; /* Add margin between items */
+    display: inline;
+    margin: 0;
 }
 
 .topnav a {
     color: #f2f2f2;
     text-align: center;
-    padding: 16px 25px; /* Adjust as necessary */
+    padding: 16px 25px;
     text-decoration: none;
     font-size: 17px;
     margin: 7px 10px 4px;
@@ -59,15 +60,15 @@ body {
 }
 
 .hamburger {
-    display: none; /* Hide hamburger icon by default */
-    font-size: 40px; /* Increase size for visibility */
-    color: #f2f2f2; /* Match link color */
-    cursor: pointer; /* Change cursor on hover */
+    display: none;
+    font-size: 40px;
+    color: #f2f2f2;
+    cursor: pointer;
     margin: 20px;
 }
 
 .topnav.active nav {
-    display: flex; /* Ensure nav is displayed when active */
+    display: flex;
 }
 
 h1 {
@@ -88,7 +89,7 @@ h1 {
     margin: 4px;
     text-decoration: none;
     padding: 8px 16px;
-    background-color: #72A0C1;
+    background-color: #3498db;
     color: white;
     border-radius: 8px;
 }
@@ -105,9 +106,9 @@ h1 {
 
 
 .pagination a, .pagination1 a, .pagination2 a, .pagination3 a {
-    margin: 4px;  /* Adjust the spacing between the links */
+    margin: 4px;
     text-decoration: none;
-    color: blue; /* Change link color */
+    color: #3498db;
     padding: 8px 16px;
     background-color: #f9f9f9;
     border-radius: 8px;
@@ -116,13 +117,23 @@ h1 {
 
 .pagination a:hover, .pagination1 a:hover, .pagination2 a:hover, .pagination3 a:hover {
     text-decoration: underline;
-    color: darkblue; /* Change color on hover */
+    color: #2980b9;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2980b9;
+    text-decoration: underline;
 }
 
 .data-section {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Creates 5 equal-width columns */
-    gap: 20px; /* Adds 20px space between grid items */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
     padding: 20px;
     width: 80%;
     margin: 0 auto;
@@ -206,6 +217,18 @@ button.btn.btn-secondary.dropdown-toggle
     margin: 0 auto; /* Center the input/dropdown within the column */
 }
 
+.btn-secondary {
+    --bs-btn-bg: #3498db;
+    --bs-btn-hover-bg: #2980b9;
+    --bs-btn-active-bg: #2980b9;
+}
+
+h2 {
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
 /* Responsive Styles */
 @media screen and (max-width: 1300px) {
     .topnav {
@@ -214,7 +237,6 @@ button.btn.btn-secondary.dropdown-toggle
 
     .topnav nav {
         display: none; /* Hide nav by default */
-        width: 100%; /* Full width */
         flex-direction: column; /* Stack items vertically */
         position: absolute; /* Position the nav absolutely */
         top: 100%; /* Position below the nav */
@@ -343,4 +365,41 @@ button.btn.btn-secondary.dropdown-toggle
     h5 {
         font-size: 14px;
     }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    span {
+        font-size: 12px;
+    }
+
+    h1 span {
+        font-size: inherit;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .data-section {
+        margin: 0 0;
+        padding: 10px 0 0 0;
+    }
+
+    .col-3 {
+        padding: 0px 0px;
+    }
+
+    input {
+        width: 95% !important;
+    }
+    .inputs .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .inputs .col-3 {
+        width: 50%; /* Make each column take up half the width */
+        margin-bottom: 15px; /* Add some space between inputs */
+    }
+
 }

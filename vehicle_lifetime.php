@@ -41,7 +41,7 @@
     </header>
 
     <div class="container">
-        <h2>Data Histogram</h2>
+        <h2>Vehicle Lifetime Histogram</h2>
         <!-- Div for Histogram chart -->
         <div class="chart-container">
             <div id="histogramChart"></div>

@@ -87,6 +87,10 @@ form {
     background-color: #2980b9;
 }
 
+input {
+    width: 100% !important;
+}
+
 @media (max-width: 600px) {
     nav ul {
         flex-direction: column;

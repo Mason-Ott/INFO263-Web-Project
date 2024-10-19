@@ -153,6 +153,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
         <div class="row">
             <div class="col">
@@ -160,7 +161,7 @@
                 <div class="pagination"></div>
             </div>
         </div>
-    </div>
+
 
         <!-- Section for Maintenance data output -->
         <section class="data-section" id="data"></section>
