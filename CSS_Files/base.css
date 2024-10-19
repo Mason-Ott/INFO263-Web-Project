@@ -213,8 +213,8 @@ input {
 
 button.btn.btn-secondary.dropdown-toggle
 {
-    width: 80%; /* Adjust the width to 66% */
-    margin: 0 auto; /* Center the input/dropdown within the column */
+    width: 80%;
+    margin: 0 auto;
 }
 
 .btn-secondary {
@@ -236,17 +236,17 @@ h2 {
     }
 
     .topnav nav {
-        display: none; /* Hide nav by default */
-        flex-direction: column; /* Stack items vertically */
-        position: absolute; /* Position the nav absolutely */
-        top: 100%; /* Position below the nav */
-        left: 0; /* Align to the left */
-        background-color: #333; /* Set background for the dropdown */
-        z-index: 1; /* Bring nav above other elements */
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #333;
+        z-index: 1;
     }
 
     .topnav.active nav {
-        display: flex; /* Show nav when hamburger is clicked */
+        display: flex;
     }
 
     .topnav a {
@@ -254,21 +254,21 @@ h2 {
     }
 
     .topnav ul {
-        flex-direction: column; /* Stack links vertically */
-        width: 100%; /* Full width for nav links */
+        flex-direction: column;
+        width: 100%;
     }
 
     .topnav li {
-        width: 100%; /* Full width for each link */
-        text-align: center; /* Center text within links */
+        width: 100%;
+        text-align: center;
     }
 
     .hamburger {
-        display: block; /* Show hamburger icon */
+        display: block;
     }
 
     .topnav.active nav {
-        display: flex; /* Show nav when hamburger is clicked */
+        display: flex;
     }
 
     .topnav a.active {
@@ -308,8 +308,8 @@ h2 {
     }
 
     input {
-        width: 90%; /* Increase the width on medium screens */
-        padding: 8px; /* Adjust padding */
+        width: 90%;
+        padding: 8px;
         font-size: 14px !important;
     }
 
@@ -340,8 +340,8 @@ h2 {
     }
 
     input {
-        width: 100%; /* Full width on small screens */
-        padding: 6px; /* Adjust padding further */
+        width: 100%;
+        padding: 6px;
         font-size: 10px !important;
         justify-content: center;
     }
@@ -398,8 +398,8 @@ h2 {
     }
 
     .inputs .col-3 {
-        width: 50%; /* Make each column take up half the width */
-        margin-bottom: 15px; /* Add some space between inputs */
+        width: 50%;
+        margin-bottom: 15px;
     }
 
 }
