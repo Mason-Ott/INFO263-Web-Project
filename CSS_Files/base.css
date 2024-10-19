@@ -79,8 +79,9 @@ h1 {
 
 .pagination {
     justify-content: center;
-    padding-top: 20px;
+    padding-top: 18px;
     font-family: 'Roboto', sans-serif;
+    font-size: 20px;
 }
 
 .pagination-current {
@@ -123,7 +124,7 @@ h1 {
     grid-template-columns: repeat(5, 1fr); /* Creates 5 equal-width columns */
     gap: 20px; /* Adds 20px space between grid items */
     padding: 20px;
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
 }
 
@@ -132,18 +133,44 @@ h1 {
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 17px;
+    font-family: 'Roboto', sans-serif;
+}
+
+h4 {
+    font-size: 26px;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    white-space: nowrap;
+}
+
+h5 {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    display: inline;
+    white-space: nowrap;
+}
+
+.rego {
+    font-weight: bold;
+}
+
+.inline {
+    display: inline !important;
 }
 
 .inputs {
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px 10px 20px 10px;
+    padding: 12px 10px 22px 10px;
 }
 
 label {
     font-family: 'Roboto', sans-serif;
-    font-size: 28px;
+    font-size: 22px;
     color: #333;
     margin-bottom: 10px;
     display: block;
@@ -156,7 +183,8 @@ input {
 
 .col-3 label {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
+    margin-top: 7px;
 }
 
 .sort-container {
@@ -230,8 +258,24 @@ button.btn.btn-secondary.dropdown-toggle
         font-size: 20px;
     }
 
+    .pagination {
+        font-size: 18px;
+    }
+
     .data-section {
         grid-template-columns: repeat(4, 1fr);
+    }
+
+    .cell {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 22px;
+    }
+
+    h5 {
+        font-size: 20px;
     }
 
 }
@@ -247,12 +291,28 @@ button.btn.btn-secondary.dropdown-toggle
         font-size: 14px !important;
     }
 
+    .pagination {
+        font-size: 14px;
+    }
+
     .data-section {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    .cell {
+        font-size: 14px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    h5 {
+        font-size: 16px;
+    }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
     label {
         font-size: 10px;
     }
@@ -264,7 +324,23 @@ button.btn.btn-secondary.dropdown-toggle
         justify-content: center;
     }
 
+    .pagination {
+        font-size: 12px;
+    }
+
     .data-section {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cell {
+        font-size: 12px;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+
+    h5 {
+        font-size: 14px;
     }
 }

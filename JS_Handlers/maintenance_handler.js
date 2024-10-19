@@ -134,13 +134,13 @@ function getMaintenanceData(page = 1) {
                 $.each(data.data, function(index, maintenance) {
                     output += `
                 <div class="cell"> 
-                    Maintenance ID: ${maintenance.maintenance_id}<br> 
-                    Start_date: ${maintenance.start_date}<br>
-                    End_date: ${maintenance.end_date}<br> 
-                    Location: ${maintenance.location}<br> 
-                    Odometer: ${maintenance.mileage} <br>
-                    Vehicle_category: ${maintenance.vehicle_category}<br> 
-                    Vehicle_rego: <a href="vehicle.php?rego=${maintenance.vehicle_rego}">${maintenance.vehicle_rego}</a> <br>
+                    <h4><span class="rego">Rego:</span> <a href="vehicle.php?rego=${maintenance.vehicle_rego}">${maintenance.vehicle_rego}</a></h4>
+                    <h5>Maintenance ID: </h5>${maintenance.maintenance_id}<br> 
+                    <h5>Start:</h5> ${maintenance.start_date}<br>
+                    <h5>End:</h5> ${maintenance.end_date}<br> 
+                    <h5>Location:</h5> ${maintenance.location}<br> 
+                    <h5>Odometer:</h5> ${maintenance.mileage} km<br>
+                    <h5>Vehicle Type:</h5> ${maintenance.vehicle_category}<br> 
                 </div>`;
                 });
                 $('#data').html(output);

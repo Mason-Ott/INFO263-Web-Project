@@ -1,6 +1,8 @@
 .needingMaintenance {
     color: red;
     font-weight: bold;
+    height: auto;
+    width: auto;
 }
 
 #requiresMaintenance.form-check-input {

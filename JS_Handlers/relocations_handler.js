@@ -145,15 +145,15 @@ function getRelocationData(page = 1) {
                 // Display the data in the table
                 data.data.forEach(function (relocation) {
                     output += `
-                    <div class="cell"> 
-                        Relocation ID: ${relocation.relocation_id}<br> 
-                        Start_date: ${relocation.start_date}<br>
-                        End_date: ${relocation.end_date}<br> 
-                        Origin: ${relocation.origin}<br> 
-                        Destination: ${relocation.destination}<br> 
-                        Distance: ${relocation.distance} <br>
-                        Vehicle_category: ${relocation.vehicle_category}<br> 
-                        Vehicle_rego: <a href="vehicle.php?rego=${relocation.vehicle_rego}">${relocation.vehicle_rego}</a> <br>
+                    <div class="cell">
+                        <h4><span class="rego">Rego:</span> <a href="vehicle.php?rego=${relocation.vehicle_rego}">${relocation.vehicle_rego}</a></h4>
+                        <h5>Relocation ID:</h5> ${relocation.relocation_id}<br> 
+                        <h5>Start:</h5> ${relocation.start_date}<br>
+                        <h5>End:</h5> ${relocation.end_date}<br> 
+                        <h5>Origin:</h5> ${relocation.origin}<br> 
+                        <h5>Destination:</h5> ${relocation.destination}<br> 
+                        <h5>Distance:</h5> ${relocation.distance} km<br>
+                        <h5>Vehicle Type:</h5> ${relocation.vehicle_category}<br> 
                     </div>`;
                 });
                 document.getElementById("data").innerHTML = output;

@@ -49,137 +49,136 @@
             </div>
         </div>
 
-        <div class="row">
-            <!-- Dropdown for Vehicle Category -->
-            <div class="col-2">
-                Vehicle Type
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span id="selectedVehicleType">ALL</span> <!-- Set default text here -->
-                    </button>
-                    <ul class="dropdown-menu" id="vehicleMenu">
-                        <li><button class="dropdown-item vehicle-item" type="button" data-category="ALL">ALL</button></li>
-                        <!-- retrieve distinct vehicle categories from database-->
-                        <?php
-                            require_once 'db.php';
-                            $categoriesQuery = "SELECT DISTINCT vehicle_category FROM vehicle";
-                            $categoriesStmt = $pdo->query($categoriesQuery);
-                            $vehicleCategories = $categoriesStmt->fetchAll(PDO::FETCH_ASSOC);
-                            foreach ($vehicleCategories as $vehicle_category): ?>
-                                <li>
-                                    <button class="dropdown-item vehicle-item" type="button" data-category="<?= htmlspecialchars($vehicle_category['vehicle_category']); ?>">
-                                        <?= htmlspecialchars($vehicle_category['vehicle_category']); ?>
-                                    </button>
-                                </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Date input for Start Date -->
-            <div class="col-3">
-                <label for="startDate">Trip Start Date (From)</label>
-                <input type="date" id="startDate" class="form-control" name="startDate" onchange="getTripData()">
-            </div>
-
-            <!-- Date input for End Date -->
-            <div class="col-3">
-                <label for="endDate">Trip End Date (To)</label>
-                <input type="date" id="endDate" class="form-control" name="endDate" onchange="getTripData()">
-            </div>
-
-            <!-- Dropdown for Origin -->
-            <div class="col-2">
-                Origin
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span id="selectedOrigin">ANY</span> <!-- Set default text here -->
-                    </button>
-                    <ul class="dropdown-menu" id="originMenu">
-                        <li><button class="dropdown-item origin-item" type="button" data-category="ANY">ANY</button></li>
-                        <!-- retrieve distinct origins from database-->
-                        <?php
-                        $originQuery = $pdo->query("SELECT DISTINCT origin FROM trip_whole");
-                        $originCategories = $originQuery->fetchAll(PDO::FETCH_ASSOC);
-                        foreach ($originCategories as $origin): ?>
-                            <li>
-                                <button class="dropdown-item origin-item" type="button" data-category="<?= htmlspecialchars($origin['origin']); ?>">
-                                    <?= htmlspecialchars($origin['origin']); ?>
-                                </button>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Dropdown for Destination -->
-            <div class="col-2">
-                Destination
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span id="selectedDestination">ANY</span> <!-- Set default -->
-                    </button>
-                    <ul class="dropdown-menu" id="destinationMenu">
-                        <li><button class="dropdown-item destination-item" type="button" data-category="ANY">ANY</button></li>
-                        <!-- retrieve distinct destinations from database-->
-                        <?php
-                        $destinationQuery = $pdo->query("SELECT DISTINCT destination FROM trip_whole");
-                        $destinationCategories = $destinationQuery->fetchAll(PDO::FETCH_ASSOC);
-                        foreach ($destinationCategories as $destination): ?>
-                            <li>
-                                <button class="dropdown-item destination-item" type="button" data-category="<?= htmlspecialchars($destination['destination']); ?>">
-                                    <?= htmlspecialchars($destination['destination']); ?>
-                                </button>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="row text-center">
-            <div class="col-4 ">
-                <!-- Text Input for Minimum Distance -->
-                <label for="distanceMin">Minimum Distance:</label>
-                <input type="number" id="distanceMin" step="100" min="0" max="3000" value="0" oninput="getTripData()" placeholder="Minimum Distance">
-            </div>
-
-            <div class="col-4">
-                <!-- Text Input for Maximum Distance -->
-                <label for="distanceMax">Maximum Distance:</label>
-                <input type="number" id="distanceMax" step="100" min="0" max="3000" value="3000" oninput="getTripData()" placeholder="Maximum Distance">
-            </div>
-
-            <div class="col-4">
+        <div class="inputs">
+            <div class="row text-center">
+                <!-- Dropdown for Vehicle Category -->
                 <div class="col-3">
-                    <label for="rego">Rego:</label>
-                    <input type="text" id="rego" oninput="getTripData()" placeholder="Registeration">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <!-- Dropdown for sort by options-->
-                Sort by
-                <div class="d-inline-flex align-items-center">
+                    <label for="vehicleType">Vehicle Type</label>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span id="selectedSortBy" data-category="vehicle_rego">Rego</span> <!-- Set default -->
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="vehicleType" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span id="selectedVehicleType">ALL</span> <!-- Set default text here -->
                         </button>
-                        <ul class="dropdown-menu" id="sortMenu">
-                            <li><button class="dropdown-item sort-item" type="button" data-category="vehicle_rego">Rego</button></li>
-                            <li><button class="dropdown-item sort-item" type="button" data-category="distance">Distance</button></li>
-                            <li><button class="dropdown-item sort-item" type="button" data-category="start_date">Start Date</button></li>
-                            <li><button class="dropdown-item sort-item" type="button" data-category="end_date">End Date</button></li>
-                            <li><button class="dropdown-item sort-item" type="button" data-category="duration">Duration</button></li>
+                        <ul class="dropdown-menu" id="vehicleMenu">
+                            <li><button class="dropdown-item vehicle-item" type="button" data-category="ALL">ALL</button></li>
+                            <!-- retrieve distinct vehicle categories from database-->
+                            <?php
+                                require_once 'db.php';
+                                $categoriesQuery = "SELECT DISTINCT vehicle_category FROM vehicle";
+                                $categoriesStmt = $pdo->query($categoriesQuery);
+                                $vehicleCategories = $categoriesStmt->fetchAll(PDO::FETCH_ASSOC);
+                                foreach ($vehicleCategories as $vehicle_category): ?>
+                                    <li>
+                                        <button class="dropdown-item vehicle-item" type="button" data-category="<?= htmlspecialchars($vehicle_category['vehicle_category']); ?>">
+                                            <?= htmlspecialchars($vehicle_category['vehicle_category']); ?>
+                                        </button>
+                                    </li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
+                </div>
 
-                    <!-- Sort Direction Icon Button -->
-                    <button id="sort-direction" class="btn btn-light ms-2">
-                        <img id="sort-image" src="Resources/ascending-sort.png" alt="Sort Direction" style="width: 20px; height: 20px;">
-                    </button>
+                <div class="col-3">
+                    <label for="rego">Rego</label>
+                    <input type="text" id="rego" oninput="getTripData()" placeholder="Registeration" class="form-control">
+                </div>
+
+
+
+                <!-- Dropdown for Origin -->
+                <div class="col-3">
+                    <label for="origin">Origin</label>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="origin" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span id="selectedOrigin">ANY</span> <!-- Set default text here -->
+                        </button>
+                        <ul class="dropdown-menu" id="originMenu">
+                            <li><button class="dropdown-item origin-item" type="button" data-category="ANY">ANY</button></li>
+                            <!-- retrieve distinct origins from database-->
+                            <?php
+                            $originQuery = $pdo->query("SELECT DISTINCT origin FROM trip_whole");
+                            $originCategories = $originQuery->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($originCategories as $origin): ?>
+                                <li>
+                                    <button class="dropdown-item origin-item" type="button" data-category="<?= htmlspecialchars($origin['origin']); ?>">
+                                        <?= htmlspecialchars($origin['origin']); ?>
+                                    </button>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Dropdown for Destination -->
+                <div class="col-3">
+                    <label for="destination">Destination</label>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="destination" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span id="selectedDestination">ANY</span> <!-- Set default -->
+                        </button>
+                        <ul class="dropdown-menu" id="destinationMenu">
+                            <li><button class="dropdown-item destination-item" type="button" data-category="ANY">ANY</button></li>
+                            <!-- retrieve distinct destinations from database-->
+                            <?php
+                            $destinationQuery = $pdo->query("SELECT DISTINCT destination FROM trip_whole");
+                            $destinationCategories = $destinationQuery->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($destinationCategories as $destination): ?>
+                                <li>
+                                    <button class="dropdown-item destination-item" type="button" data-category="<?= htmlspecialchars($destination['destination']); ?>">
+                                        <?= htmlspecialchars($destination['destination']); ?>
+                                    </button>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-3">
+                    <!-- Text Input for Minimum Distance -->
+                    <label for="distanceMin">Minimum Distance</label>
+                    <input type="number" id="distanceMin" step="100" min="0" max="3000" value="0" oninput="getTripData()" placeholder="Minimum Distance" class="form-control">
+                </div>
+
+                <div class="col-3">
+                    <!-- Text Input for Maximum Distance -->
+                    <label for="distanceMax">Maximum Distance</label>
+                    <input type="number" id="distanceMax" step="100" min="0" max="3000" value="3000" oninput="getTripData()" placeholder="Maximum Distance" class="form-control">
+                </div>
+
+                <!-- Date input for Start Date -->
+                <div class="col-3">
+                    <label for="startDate">Start Date (From)</label>
+                    <input type="date" id="startDate" class="form-control" name="startDate" onchange="getTripData()">
+                </div>
+
+                <!-- Date input for End Date -->
+                <div class="col-3">
+                    <label for="endDate">End Date (To)</label>
+                    <input type="date" id="endDate" class="form-control" name="endDate" onchange="getTripData()">
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-3">
+                    <label for="sortBy">Sort by</label>
+                    <div class="sort-container">
+                        <div class="dropdown w-100">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="sortBy" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span id="selectedSortBy" data-category="vehicle_rego">Rego</span>
+                            </button>
+                            <ul class="dropdown-menu" id="sortMenu">
+                                <li><button class="dropdown-item sort-item" type="button" data-category="vehicle_rego">Rego</button></li>
+                                <li><button class="dropdown-item sort-item" type="button" data-category="odometer">Odometer</button></li>
+                                <li><button class="dropdown-item sort-item" type="button" data-category="commissioned_date">Commission Date</button></li>
+                                <li><button class="dropdown-item sort-item" type="button" data-category="decommissioned_date">Decommission Date</button></li>
+                                <li><button class="dropdown-item sort-item" type="button" data-category="distance_since_maintenance">Distance since Maintenance</button></li>
+                            </ul>
+                        </div>
+                        <button id="sort-direction" class="btn btn-light">
+                            <img id="sort-image" src="Resources/ascending-sort.png" alt="Sort Direction" style="width: 20px; height: 20px;">
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -191,9 +190,11 @@
             </div>
         </div>
 
+    </div>
+
         <!-- Section for Trip data output -->
         <section class="data-section" id="data"></section>
-    </div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

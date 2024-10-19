@@ -145,15 +145,15 @@ function getTripData(page = 1) {
                     var durationUnit = trip.duration == 1 ? 'day' : 'days';
                     output += `
                     <div class="cell"> 
-                        Trip ID: ${trip.trip_id}<br> 
-                        Start_date: ${trip.start_date}<br>
-                        End_date: ${trip.end_date}<br> 
-                        Duration: ${trip.duration} ${durationUnit}<br>
-                        Origin: ${trip.origin}<br> 
-                        Destination: ${trip.destination}<br> 
-                        Distance: ${trip.distance} <br>
-                        Vehicle_category: ${trip.vehicle_category}<br> 
-                        Vehicle_rego: <a href="vehicle.php?rego=${trip.vehicle_rego}">${trip.vehicle_rego}</a> <br>
+                        <h4><span class="rego">Vehicle_rego:</span> <a href="vehicle.php?rego=${trip.vehicle_rego}">${trip.vehicle_rego}</a></h4>
+                        <h5>Trip ID:</h5> ${trip.trip_id}<br> 
+                        <h5>Start:</h5> ${trip.start_date}<br>
+                        <h5>End:</h5> ${trip.end_date}<br> 
+                        <h5>Duration:</h5> ${trip.duration} ${durationUnit}<br>
+                        <h5>Origin:</h5> ${trip.origin}<br> 
+                        <h5>Destination:</h5> ${trip.destination}<br> 
+                        <h5>Distance:</h5> ${trip.distance} km<br>
+                        <h5>Vehicle Type:</h5> ${trip.vehicle_category}<br> 
                     </div>`;
                 });
                 document.getElementById("data").innerHTML = output;

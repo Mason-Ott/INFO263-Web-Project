@@ -132,20 +132,20 @@ function getVehicleData(page = 1) {
                     output += `
                     <div class="cell"> 
                         <h4>
-                        Rego: <a href="vehicle.php?rego=${vehicle.vehicle_rego}">${vehicle.vehicle_rego}</a></h4> <br>
-                        Vehicle Category: ${vehicle.vehicle_category}<br>
-                        Odometer: ${vehicle.odometer}<br> 
-                        Commissioned Date: ${vehicle.commissioned_date}<br>`;
+                        <span class="rego">Rego:</span> <a href="vehicle.php?rego=${vehicle.vehicle_rego}">${vehicle.vehicle_rego}</a></h4>
+                        <h5>Type:</h5> ${vehicle.vehicle_category}<br>
+                        <span class="inline"><h5>Odometer:</h5></span> ${vehicle.odometer} km<br>
+                        <h5>Commissioned:</h5> ${vehicle.commissioned_date}<br>`;
                     if (vehicle.decommissioned_date) {
-                        output += `Decommissioned: ${vehicle.decommissioned_date}<br>`;
+                        output += `<h5>Decommissioned:</h5> ${vehicle.decommissioned_date}<br>`;
                     }
                     if (vehicle.distance_since_maintenance >= 20000) {
                         output += `<div class="needingMaintenance">
-                            Requires Maintenance<br>
-                        </div> `;
+                            <h5>Requires Maintenance</h5>
+                        </div>`;
                     }
                     if (vehicle.distance_since_maintenance != null) {
-                        output += `Distance Since Maintenance: ${vehicle.distance_since_maintenance}<br>`;
+                        output += `<h5>Distance Since Maintenance:</h5> ${vehicle.distance_since_maintenance} km<br>`;
                     }
                     output += `</div>`;
                 });

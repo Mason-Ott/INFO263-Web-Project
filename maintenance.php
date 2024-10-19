@@ -130,25 +130,25 @@
             <div class="row text-center">
                 <div class="col-3">
                     <!-- Text Input for Minimum Odometer -->
-                    <label for="odometerMin">Minimum Odometer:</label>
-                    <input type="number" id="odometerMin" step="1000" min="0" max="70000" value="0" oninput="getMaintenanceData()" placeholder="Minimum Odometer">
+                    <label for="odometerMin">Minimum Odometer</label>
+                    <input type="number" id="odometerMin" step="1000" min="0" max="70000" value="0" oninput="getMaintenanceData()" placeholder="Minimum Odometer" class="form-control">
                 </div>
 
                 <div class="col-3">
                     <!-- Text Input for Maximum Odometer -->
-                    <label for="odometerMax">Maximum Odometer:</label>
-                    <input type="number" id="odometerMax" step="1000" min="0" max="70000" value="70000" oninput="getMaintenanceData()" placeholder="Maximum Odometer">
+                    <label for="odometerMax">Maximum Odometer</label>
+                    <input type="number" id="odometerMax" step="1000" min="0" max="70000" value="70000" oninput="getMaintenanceData()" placeholder="Maximum Odometer" class="form-control">
                 </div>
 
                 <!-- Date input for Start Date -->
                 <div class="col-3">
-                    <label for="startDate">Maintenance Start Date (From)</label>
+                    <label for="startDate">Start Date (From)</label>
                     <input type="date" id="startDate" class="form-control" name="startDate" onchange="getMaintenanceData()">
                 </div>
 
                 <!-- Date input for End Date -->
                 <div class="col-3">
-                    <label for="endDate">Maintenance End Date (To)</label>
+                    <label for="endDate">End Date (To)</label>
                     <input type="date" id="endDate" class="form-control" name="endDate" onchange="getMaintenanceData()">
                 </div>
             </div>
@@ -160,10 +160,11 @@
                 <div class="pagination"></div>
             </div>
         </div>
+    </div>
 
         <!-- Section for Maintenance data output -->
         <section class="data-section" id="data"></section>
-    </div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
