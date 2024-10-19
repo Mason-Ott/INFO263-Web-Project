@@ -29,10 +29,10 @@ function getVehicleData(page, value) {
                 // Output vehicle data
                 output += `
                     <div class="cell"> 
-                        Vehicle_rego: <a href="vehicle.php?rego=${vehicle.vehicle_rego}">${vehicle.vehicle_rego}</a> <br>
-                        Days of Service: ${vehicle.service_days}<br>
-                        Number of Trips: ${vehicle.no_of_trips}<br>
-                        Vehicle Category: ${vehicle.vehicle_category}<br> 
+                        <h4><span class="rego">Rego:</span> <a href="vehicle.php?rego=${vehicle.vehicle_rego}">${vehicle.vehicle_rego}</a></h4> <br>
+                        <h5>Days of Service:</h5> ${vehicle.service_days}<br>
+                        <h5>Number of Trips:</h5> ${vehicle.no_of_trips}<br>
+                        <h5>Vehicle Type:</h5> ${vehicle.vehicle_category}<br> 
                     </div>`;
             });
             document.getElementById("data").innerHTML = output;

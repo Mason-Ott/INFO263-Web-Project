@@ -6,9 +6,10 @@
     <title>Vehicle Lifetime</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="JS_Handlers/vehicle_lifetime_handler.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS_Files/base.css">
     <link rel="stylesheet" href="CSS_Files/vehicle_lifetime.css">
-</head>
+    </head>
 <body>
     <script>
         <!-- Toggle Navigation Hamburger-->
@@ -47,16 +48,20 @@
             <div id="histogramChart"></div>
         </div>
 
-        <!-- Div for pagination -->
-        <div class="pagination"></div>
 
-        <!-- Div for vehicle data -->
-        <section class="data-section" id="data"></section>
-
+        <div class="row">
+            <!-- Div for displaying pagination -->
+            <div class="pagination"></div>
+        </div>
     </div>
+
+    <!-- Div for vehicle data -->
+    <section class="data-section" id="data"></section>
+
     <script>
         getHistogramData();
     </script>
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>

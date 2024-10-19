@@ -35,7 +35,7 @@ function getVehicleData(page1=1, page2=1, page3=1) {
             if (data.vehicle) {
                 vehicleOutput = `
                     <div class="vehicle"> 
-                        <h3>Type:</h3> ${data.vehicle.vehicle_category}<br> 
+                        <h3>Vehicle Type:</h3> ${data.vehicle.vehicle_category}<br> 
                         <h3>Odometer:</h3> ${data.vehicle.odometer}<br>
                         <h3>Commissioned:</h3> ${data.vehicle.commissioned_date}<br>`
                 if (data.vehicle.decommissioned_date) {
