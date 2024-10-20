@@ -41,7 +41,7 @@
         </div>
     </header>
 
-    <div class="container">
+
         <h2>Vehicle Lifetime Histogram</h2>
         <!-- Div for Histogram chart -->
         <div class="chart-container">
@@ -53,7 +53,7 @@
             <!-- Div for displaying pagination -->
             <div class="pagination"></div>
         </div>
-    </div>
+
 
     <!-- Div for vehicle data -->
     <section class="data-section" id="data"></section>
