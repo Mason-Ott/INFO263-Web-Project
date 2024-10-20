@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicles</title>
-    <link rel="stylesheet" href="CSS_Files/vehicles.css">
+    <link rel="stylesheet" href="css_files/vehicles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS_Files/base.css">
-    <script rel="stylesheet" src="JS_Handlers/vehicles_handler.js"></script>
+    <link rel="stylesheet" href="css_files/base.css">
+    <script rel="stylesheet" src="js_handlers/vehicles_handler.js"></script>
 
 </head>
 <body>

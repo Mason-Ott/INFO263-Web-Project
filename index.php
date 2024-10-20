@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicle Rental Service</title>
-    <link rel="stylesheet" href="CSS_Files/base.css">
-    <link rel="stylesheet" href="CSS_Files/index.css">
+    <link rel="stylesheet" href="css_files/base.css">
+    <link rel="stylesheet" href="css_files/index.css">
 </head>
 <body>
     <script>
@@ -39,7 +39,7 @@
     </header>
 
     <?php
-    require_once 'PHP_Handlers/index_handler.php';
+    require_once 'php_handlers/index_handler.php';
     ?>
 
 

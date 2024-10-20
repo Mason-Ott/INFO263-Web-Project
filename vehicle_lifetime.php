@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicle Lifetime</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="JS_Handlers/vehicle_lifetime_handler.js"></script>
+    <script src="js_handlers/vehicle_lifetime_handler.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS_Files/base.css">
-    <link rel="stylesheet" href="CSS_Files/vehicle_lifetime.css">
+    <link rel="stylesheet" href="css_files/base.css">
+    <link rel="stylesheet" href="css_files/vehicle_lifetime.css">
     </head>
 <body>
     <script>

@@ -1,6 +1,6 @@
 <?php
 require_once 'db.php';
-require_once 'PHP_Handlers/user_management_handler.php';
+require_once 'php_handlers/user_management_handler.php';
 ?>
 
 <!DOCTYPE html>
@@ -9,8 +9,8 @@ require_once 'PHP_Handlers/user_management_handler.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management System</title>
-    <link rel="stylesheet" href="CSS_Files/base.css">
-    <link rel="stylesheet" href="CSS_Files/user_management.css">
+    <link rel="stylesheet" href="css_files/base.css">
+    <link rel="stylesheet" href="css_files/user_management.css">
 </head>
 <body>
     <h2>Database Admin User Management System</h2>
