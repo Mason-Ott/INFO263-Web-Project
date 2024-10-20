@@ -6,7 +6,7 @@
     <title>Trips</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS_Files/base.css">
-    <script rel="stylesheet" src="JS_Handlers/trip_handler.js"></script>
+    <script rel="stylesheet" src="JS_Handlers/trips_handler.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>

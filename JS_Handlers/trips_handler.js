@@ -69,7 +69,7 @@ function getTripData(page = 1) {
 
     // construct request URL
 
-    var requestUrl = `PHP_Handlers/trip_handler.php?&offset=${offset}&limit=${limit}`;
+    var requestUrl = `PHP_Handlers/trips_handler.php?&offset=${offset}&limit=${limit}`;
     var request = ``;
 
     var url = `trips.php?page=${page}`;
